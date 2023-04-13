@@ -365,8 +365,8 @@ def saveUserInputData(userInputData):
     with ZipFile(zipfileName, 'w') as zipObj2:
        # Add multiple files to the zip
        zipObj2.write(fileName)
-       zipObj2.write(folder+"scriptTemplate.py")
-       zipObj2.write(folder+"README.txt")
+       zipObj2.write("./scriptTemplate.py")
+       zipObj2.write("./README.txt")
 
        #delete pkl file
        if os.path.exists(fileName):
