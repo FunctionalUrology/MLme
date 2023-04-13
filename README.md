@@ -20,6 +20,6 @@
        
   - #### Launch  ------------App-name------------
       
-       ```python -m launcher.py``` 
+       ```python -m main``` 
       
 
