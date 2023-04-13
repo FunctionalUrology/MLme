@@ -14,3 +14,5 @@ bokeh==2.4.3
 imbalanced-learn==0.9.0
 matplotlib==3.4.3
 dash-loading-spinners==1.0.0 
+dash-uploader==0.6.0
+
