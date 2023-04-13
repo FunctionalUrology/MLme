@@ -116,7 +116,7 @@ def switch_tab(at):
     return html.P("This shouldn't ever be displayed...")
 
 
-
+import webbrowser as web
 web.open_new('http://127.0.0.1:8050/')
 
 # =============================================================================
