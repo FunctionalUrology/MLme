@@ -96,7 +96,7 @@ def runSubscript(data,date,varTH_automl,percentile):
     # #write logs
     # =============================================================================
              
-    #date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")    
+    #date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")  
     os.makedirs(os.path.join(os.getcwd(),"autoML_output/"+date))
     logFolder = os.path.join(os.getcwd(),"autoML_output/"+date)
     filename=os.path.join(logFolder,date+'-log.txt')
