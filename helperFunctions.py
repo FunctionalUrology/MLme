@@ -344,7 +344,7 @@ def saveUserInputData(userInputData):
     #return userInputData
     
     #temp location
-    folder="./userInputData/"
+    folder="userInputData"
     
     #del all file from templ loc if there are too much
     filelist = [ f for f in os.listdir(folder) if f.endswith(".zip") ]
@@ -365,8 +365,8 @@ def saveUserInputData(userInputData):
     with ZipFile(zipfileName, 'w') as zipObj2:
        # Add multiple files to the zip
        zipObj2.write(fileName)
-       zipObj2.write("./scriptTemplate.py")
-       zipObj2.write("./README.txt")
+       zipObj2.write("scriptTemplate.py")
+       zipObj2.write("README.txt")
 
        #delete pkl file
        if os.path.exists(fileName):
@@ -1205,14 +1205,14 @@ def getPieline(trainedModels,models,config):
     
     #if config=="diagram":
     #del all file from templ loc if there are too much
-    filelist = [ f for f in os.listdir("./assets/") if f.endswith(".html") ]
+    filelist = [ f for f in os.listdir("assets") if f.endswith(".html") ]
     if len(filelist)>5:
         for f in filelist:
-            os.remove(os.path.join("./assets/", f))
+            os.remove(os.path.join("assets", f))
             
     #create filenames
     current_time = datetime.now().strftime("%H_%M_%S")
-    fileName="./assets/pipeline_"+models+"_"+current_time+".html"
+    fileName=os.path.join("assets","pipeline_"+models+"_"+current_time+".html")
     
     set_config(display='diagram')
     with open(fileName, 'w') as f:  
@@ -1246,13 +1246,15 @@ from dash.dependencies import Input, Output,State,ALL
 from app import app
 
 @app.callback(
-    Output("download-pipe", "href"), 
-    Input("pipeDownload","n_clicks") 
+    Output("download-pipe", "data"), 
+    Input("pipeDownload","n_clicks"),
+    prevent_initial_call=True
 ) 
 
 def down_pipe(n_clicks): 
     if n_clicks:  
         return dcc.send_file(filename_pipe)
+        #return dcc.send_file("./assets/pipeline_SVM_RepeatedStratifiedKFold_13_48_31.html")
 
 
 """import pandas as pd
