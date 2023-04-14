@@ -97,10 +97,15 @@ def runSubscript(data,date,varTH_automl,percentile):
     # =============================================================================
              
     #date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")  
-    os.makedirs(os.path.join(os.getcwd(),"autoML_output"+date))
-    logFolder = os.path.join(os.getcwd(),"autoML_output"+date)
+    os.makedirs(os.path.join(os.getcwd(),"autoML_output",date))
+    logFolder = os.path.join(os.getcwd(),"autoML_output",date)
     filename=os.path.join(logFolder,date+'-log.txt')
     
+    print("--------------------")
+    print(logFolder)
+    print(logFolder)
+    print("--------------------")
+
     if os.path.exists(logFolder):
         sys.stdout = open(filename, 'w')
     else:
@@ -294,10 +299,10 @@ def runSubscript(data,date,varTH_automl,percentile):
     print("=============================================================================\n\n\n\n")
     
     #Save user input data as pkl object
-    fileName=logFolder+'/trainedModels.pkl'
+    fileName=os.path.join(logFolder,'trainedModels.pkl')
     with open(fileName, 'wb') as handle:
         pickle.dump(trainedModels, handle)
     
-    #ßreturn date
+    #return date
          
          
