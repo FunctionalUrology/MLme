@@ -354,7 +354,7 @@ def saveUserInputData(userInputData):
     
     #create filenames
     current_time = datetime.now().strftime("%H_%M_%S")
-    fileName=folder+"inputParameters_"+current_time+".pkl"
+    fileName="inputParameters_"+current_time+".pkl"
     zipfileName=folder+"data_"+current_time+".zip"
     
     #Save user input data as pkl object
