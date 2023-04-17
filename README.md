@@ -6,7 +6,7 @@
 
   - #### Prerequisite 
     
-    To use ------------App-name------------, you must have ```Python``` version 3.9 or higher and ```pip``` installed
+    To use ------------App-name------------, you must have ```Python``` version ```3.9``` and ```pip``` installed
     and that they are accessible from the terminal.
     
   - #### Download sourcecode 
