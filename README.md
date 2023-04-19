@@ -26,8 +26,7 @@
        ```python -m main``` 
        
   - ### Errors you may encounter
-    - ``` python setup.py bdist_wheel did not run successfully.```
-      - Possible solution: You can simply ignore this error.
+
 
 # Features
 
@@ -65,3 +64,6 @@
 
  
 
+# Errors you may encounter
+  - ``` Following exception occurred: single positional indexer is out-of-bounds```
+    - Possible solution: Ensure that you have selected the correct separator using the ```Sep``` dropdown menu.
