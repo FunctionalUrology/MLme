@@ -74,7 +74,7 @@
          ```python script.py path/to/data.csv "seprator" inputParameter.pkl```
        - After the pipeline has been executed, it will generate a compressed zip file as output, which includes a log.txt and results.pkl file. The user can then upload the results.pkl file to the ```Visualization``` tab of ---tool name-- to interpret the results.
  
-  - ### Visualization
+- ### Visualization
  
    -  This feature enables users to effortlessly interpret and analyze their findings with the help of several interactive tables and plots.
    
