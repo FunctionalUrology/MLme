@@ -408,7 +408,7 @@ def discrete_background_color_bins(df, n_bins=5, columns='all'):
     for i in range(1, len(bounds)):
         min_bound = ranges[i - 1]
         max_bound = ranges[i]
-        backgroundColor = colorlover.scales[str(n_bins)]['seq']['Blues'][i - 1]
+        backgroundColor = colorlover.scales[str(n_bins)]['seq']['GnBu'][i - 1]
         color = 'black' if i > len(bounds) / 2. else 'black'
 
         for column in df_numeric_columns:
@@ -457,7 +457,7 @@ def getTable(df):
                 data=df.to_dict('records'),
                 columns=[{"name": i, "id": i} for i in sorted(df.columns)],
                 
-                style_data={'color': 'white','backgroundColor': '#444'},
+                style_data={'color': 'black','backgroundColor': 'white'},
                 style_header={'backgroundColor': 'black','color': 'white','fontWeight': 'bold'},
                 style_table={'overflow': 'scroll','minWidth': '100%'},
                 #fixed_columns={ 'headers': True, 'data': 1 },
@@ -520,7 +520,7 @@ def getSelFeat_Table(df):
                 data=df.to_dict('records'),
                 columns=[{"name": i, "id": i} for i in sorted(df.columns)],
                 
-                style_data={'color': 'white','backgroundColor': '#444'},
+                style_data={'color': 'black','backgroundColor': 'white'},
                 style_header={'backgroundColor': 'black','color': 'white','fontWeight': 'bold'},
                 style_table={'overflow': 'scroll','minWidth': '100%'},
                 #fixed_columns={ 'headers': True, 'data': 1 },
@@ -694,9 +694,6 @@ def getBarPlot(df,pal,barPlotText):
             groupColor=groupColorPal[len(models)]
         
         
-        
-
-    
     #find out number of rows, cols for traces 
     totalrows=round(len(models)/2+0.1)
     totalcols=2
@@ -713,10 +710,9 @@ def getBarPlot(df,pal,barPlotText):
         height=totalrows*250
 
     
-        
     for model in models:
         
-        if colIndex>len(groupColor)-3:
+        if colIndex>len(groupColor)-1:
             colIndex=0
             
         if len(groupColor)==256:
