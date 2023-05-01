@@ -39,10 +39,10 @@ def getScalingHeader(scaling):
                                     inline=True,switch=True,labelStyle={"font-weight": "bold",
                                                                         "font-size": "18px"},
                                     labelCheckedStyle={"color": "green"},persistence=True,persistence_type="memory"),
-              width={"size": 8},),
+              width={"size": 9},),
    dbc.Col(dbc.Button("Parameters",id=scaling+"-collapse-button",
             className="mr-1",size="sm",color="light",n_clicks=0,),
-        width={"size": 4},)
+        width={"size": 3},)
        ])
 
     #--------------------------
@@ -286,18 +286,22 @@ scaling_content =dbc.Card([
                         dbc.Row([
                                 dbc.Col(dbc.Card(maxAbs_Scaler_content, color="secondary", outline=True)),
                                 dbc.Col(dbc.Card(minmax_Scaler_content, color="secondary", outline=True)),
+                                ],className="mb-4",),
+                        
+                        dbc.Row([
                                 dbc.Col(dbc.Card(normalizer_Scaler_content, color="secondary", outline=True)),
+                                dbc.Col(dbc.Card(powerTransformer_Scaler_content, color="secondary", outline=True)),
+
                                 ],className="mb-4",),
                         
                         dbc.Row([
 
-                                 dbc.Col(dbc.Card(powerTransformer_Scaler_content, color="secondary", outline=True)),
                                  dbc.Col(dbc.Card(quantileTransformer_Scaler_content, color="secondary", outline=True),),
                                  dbc.Col(dbc.Card(RobustScaler_content, color="secondary", outline=True),),
                                 ],className="mb-4",),
                         
                         dbc.Row([
-                                dbc.Col(dbc.Card(standard_Scaler_content, color="secondary", outline=True),width=4),
+                                dbc.Col(dbc.Card(standard_Scaler_content, color="secondary", outline=True),width=6),
                                 
                                 ],className="mb-4",),
                             ])
