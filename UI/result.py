@@ -232,7 +232,7 @@ import dash_loading_spinners as dls
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 resultPanel=dbc.Card([dbc.CardBody([ 
                 dbc.Col(html.Div(filterOptions,style={"margin-top": "12px"})),
-                dbc.Col(html.Hr(style={"background-color": "white"})),
+                dbc.Col(html.Hr(style={"background-color": "black"})),
                 dbc.Col(dls.Hash(html.Div(id='uploadResult_plots',style={"margin-top": "12px"}),size=100,color="#FFFFFF"))                
                 ])],className="mt-3",color="dark", outline=True) 
 
