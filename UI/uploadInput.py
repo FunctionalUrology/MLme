@@ -47,7 +47,7 @@ upload_data_sidePanel=dbc.Card([dbc.CardBody([
                                         {"label": ",", "value": ","},
                                         {"label": "Tab", "value": "\t"},
                                         {"label": "Spcae", "value": " "},                     
-                                    ],value= ",", clearable=False,style={"font-size": "14px",'color': 'black'},
+                                    ],value= "\t", clearable=False,style={"font-size": "14px",'color': 'black'},
                                     id="uploadInput_sep",persistence=True,persistence_type="memory"),
                      
                     
@@ -63,7 +63,7 @@ upload_data_sidePanel=dbc.Card([dbc.CardBody([
 InputData_plotOptions=dbc.Card([dbc.CardBody([
                         html.Div(dbc.Label("Plot/Table Type",style={"font-weight": "bold","font-size": "16px"})),
                         dcc.Dropdown(options=[
-                            #{"label": "Histogram", "value": "histogram"},
+                            #{"label": "Table", "value": "table_input"},
                             {"label": "Density Plot", "value": "densityPlot"},
                             {"label": "Scatter matrix plot", "value": "scatterMatrix"},
                             {"label": "Box plot", "value": "boxPlot"},
@@ -197,21 +197,22 @@ def update_output(is_completed,sep,InputData_plotOptions,
             #read file  
             global inputData,featoptions
             inputData=pd.read_csv(file,index_col=0,sep=sep)
-                
+            
+    
             #check for NAN values
             if inputData.isnull().values.any():
             
                 a=html.Div(scatterMatOptions,style={"display":"none"})
                 b=html.Div(denPlotOptions,style={"display":"none"})
                 plot="Given file contains NaN values. NaN values are not allowed."
-                    
+
                 return html.Div([a,b,plot])
+            
             else:
                 inputData.iloc[:,-1]=inputData.iloc[:,-1].astype(str)
                 df=inputData.iloc[: ,0:5]   
                                 
                 #update result df as per user input
-
                 pal=PlotColor
                     
                 if InputData_plotOptions == "table":
@@ -230,6 +231,11 @@ def update_output(is_completed,sep,InputData_plotOptions,
                     
                     return html.Div([a,b,plot])
                 
+# =============================================================================
+#                 elif InputData_plotOptions == "table_input": 
+#                     return getInputTable(inputData)
+# =============================================================================
+
                 
                 elif InputData_plotOptions == "densityPlot": 
                     a=html.Div(denPlotOptions)
