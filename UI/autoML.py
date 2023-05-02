@@ -49,7 +49,7 @@ upload_data_sidePanel=dbc.Card([dbc.CardBody([
                                         {"label": ",", "value": ","},
                                         {"label": "Tab", "value": "\t"},
                                         {"label": "Spcae", "value": " "},                     
-                                    ],value= ",", clearable=False,style={"font-size": "14px",'color': 'black'},
+                                    ],value= "\t", clearable=False,style={"font-size": "14px",'color': 'black'},
                                     id="autoML_sep",persistence=True,persistence_type="memory"),
                      
                     
