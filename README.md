@@ -34,7 +34,7 @@
     -  The Data Exploration feature enables users to upload datasets and analyze them with statistical visualizations, providing insights into data patterns, trends, and outliers for informed decisions in developing ML pipelines.  
     
     -  <i>Input</i>:  
-       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values.  
+       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt). 
        -  When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
    
     -  <i>Output</i>:
@@ -46,7 +46,7 @@
    - The Auto ML feature runs a default machine learning pipeline, allowing researchers to analyze their datasets without technical expertise. The pipeline includes preprocessing, feature selection, and training and evaluation of multiple classification models, including a dummy classifier. 
   
    -  <i>Input</i>:  
-       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values.  
+       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
        -  When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
        -  ```Variance Threshold```: The default ML pipeline incorporates a variance threshold feature that eliminates features with variance below the threshold specified by the user.
        -  ```No of Features to Select```: Specify the desired percentage of features to be selected from the original set by utilizing the feature selection step.
@@ -79,7 +79,7 @@
    -  This feature enables users to effortlessly interpret and analyze their findings with the help of several interactive tables and plots.
    
    -  <i>Input</i>:  
-       -  results.pkl file from ```Auto ML``` or ```Custom ML```.
+       -  results.pkl file from ```Auto ML``` or ```Custom ML```. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/results_for_Visulization.pkl).
        
    -  <i>Output</i>: 
        -  A range of tables and plots are available for comparative analysis of model performance. Users can customize and download all of the plots in high quality, making them suitable for publication.
