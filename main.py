@@ -56,7 +56,7 @@ about=dbc.Card([html.Div([
     dbc.Row(html.H5("Contact",style={"font-weight": "bold","color":"white"})),
     html.P("Bug reports and new feature requests can be communicated via:"),
     html.Ul([html.Li(html.Div(["GitHub : ",html.A("https://github.com/FunctionalUrology/", href="https://github.com/FunctionalUrology/", target="_blank")]),)]),
-    html.Ul([html.Li("Email : akshay.akshay@unibe.ch , ali.hashemi@dbmr.unibe.ch")]),
+    html.Ul([html.Li("Email : akshay.akshay@unibe.ch , ali.hashemi@unibe.ch")]),
     html.Br(),
     dbc.Row(html.H5("Citation",style={"font-weight": "bold","color":"white"})),
     html.Div(["If TOOL helps you in any way, please cite the TOOL article:"]),
