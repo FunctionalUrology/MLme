@@ -712,7 +712,7 @@ def getBarPlot(df,pal,barPlotText):
     
     for model in models:
         
-        if colIndex>len(groupColor)-1:
+        if colIndex>len(groupColor)-3:
             colIndex=0
             
         if len(groupColor)==256:
