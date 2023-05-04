@@ -15,7 +15,7 @@ from collections import Counter
 import pickle
 import numpy as np
 
-
+from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("error")
 
@@ -43,7 +43,32 @@ from imblearn.over_sampling import *
 from imblearn.under_sampling import *
 from sklearn.feature_selection import SelectPercentile,VarianceThreshold
 
-def runSubscript(data,date,varTH_automl,percentile):
+
+def getTestScores(whichMetrics,y_true,yPred,k):
+    metrics={'accuracy': accuracy_score(y_true, yPred),
+     'balanced_accuracy': balanced_accuracy_score(y_true, yPred),
+     'average_precision': average_precision_score(y_true, yPred),
+     'f1': f1_score(y_true, yPred),
+     'f1_micro': f1_score(y_true, yPred,average='micro'),
+     'f1_weighted': f1_score(y_true, yPred,average='weighted'),
+     'f1_macro': f1_score(y_true, yPred,average='macro'),
+     'matthews_corrcoef': matthews_corrcoef(y_true, yPred),
+     'jaccard': jaccard_score(y_true, yPred),
+     'precision': precision_score(y_true, yPred),
+     'recall': recall_score(y_true, yPred),
+     'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
+     'roc_auc': roc_auc_score(y_true, yPred)}
+    
+    testScores={}
+
+    for metric in whichMetrics:
+        if metric in metrics.keys():
+            testScores[metric]=metrics[metric]
+            
+    return testScores
+
+
+def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
     #!!!!!!!!!! Input Data
     random_state=123
     #set random seed for numpy
@@ -70,7 +95,7 @@ def runSubscript(data,date,varTH_automl,percentile):
     
     modelEval_metrices=['accuracy','average_precision','f1','balanced_accuracy','f1_macro','f1_micro',
                         'f1_weighted','jaccard','precision','matthews_corrcoef','recall','roc_auc','top_k_accuracy']
-    refit_Metric='average_precision'
+    refit_Metric='balanced_accuracy'
     
     
     #!!!!!!!!!! Handle metrics for multiclass
@@ -154,12 +179,30 @@ def runSubscript(data,date,varTH_automl,percentile):
     print("=============================================================================")
     print("=============================================================================\n\n\n\n")
     
-    print("=============================================================================")
-    print("\t\tClass Distribution.")
-    print("=============================================================================")
-    
     #encode target variable
     y = LabelEncoder().fit_transform(y)
+    
+    
+    # Train-test split
+    if indepTestSet!=[]:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_state,shuffle=True)
+        X,y=X_train,y_train
+        
+        print("=============================================================================")
+        print("\t\tClass Distribution Test dataset.")
+        print("=============================================================================")
+        
+        # summarize distribution
+        counter = Counter(y_test)
+        for k,v in counter.items():
+         	per = v / len(y_test) * 100
+         	print('\t\tClass=%d, n=%d (%.3f%%)' % (k, v, per))
+        
+        print("\n\n\n\n=============================================================================")
+        
+    print("=============================================================================")
+    print("\t\tClass Distribution Training dataset.")
+    print("=============================================================================")
     
     # summarize distribution
     counter = Counter(y)
@@ -169,6 +212,10 @@ def runSubscript(data,date,varTH_automl,percentile):
     
     print("\n\n\n\n=============================================================================")
     
+    
+
+
+
     #change k for top k acc
     if "top_k_accuracy" in list(modelEval_metrices.keys()):
         modelEval_metrices["top_k_accuracy"]=make_scorer(top_k_accuracy_score,k=len(counter)-1)
@@ -198,6 +245,7 @@ def runSubscript(data,date,varTH_automl,percentile):
     
     trainedModels={}
     featureIndex_name={}
+    testScore={}
     
     trainedModels["refit_Metric"]=refit_Metric
     
@@ -260,6 +308,15 @@ def runSubscript(data,date,varTH_automl,percentile):
                     trainedModels[modelName+"_"+modelEval]={}
                     trainedModels[modelName+"_"+modelEval]["grid"]=grid
                     trainedModels[modelName+"_"+modelEval]["nested_results"]=nested_scores
+                    
+                                    
+                    #test score
+                    if indepTestSet!=[]:                
+                        y_pred = grid.predict(X_test)
+                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
+    
+
+
                     print("Best Score for given refit metric:  "+str(grid.best_score_))
                     print("\n\n\t\t")
                     
@@ -270,6 +327,14 @@ def runSubscript(data,date,varTH_automl,percentile):
                 else:
                     grid=grid.fit(X, y) 
                     trainedModels[modelName+"_"+modelEval]=grid
+                    
+                                                        
+                    #test score
+                    if indepTestSet!=[]:                
+                        y_pred = grid.predict(X_test)
+                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
+    
+
                     print("Best Score for given refit metric ("+refit_Metric+") :  "+str(grid.best_score_))
                     print("\n\n\t\t")
                     
@@ -286,13 +351,16 @@ def runSubscript(data,date,varTH_automl,percentile):
                 print(grid)
                 print("\n\n")
             
-            break
             
+        
 
     
     
     
     trainedModels["featSel_name"]=featureIndex_name
+    #test score
+    if indepTestSet!=[]:  
+        trainedModels["testScore"]=testScore
     
     print("=============================================================================")
     print("\t\tPipeline Done")
