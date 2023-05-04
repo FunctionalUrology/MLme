@@ -48,8 +48,8 @@ def getTestScores(whichMetrics,y_true,yPred,k):
      'f1_micro': f1_score(y_true, yPred,average='micro'),
      'f1_weighted': f1_score(y_true, yPred,average='weighted'),
      'f1_macro': f1_score(y_true, yPred,average='macro'),
-     'matthews_corrcoef': matthews_corrcoef(y_true, y_pred),
-     'jaccard': jaccard_score(y_true, y_pred),
+     'matthews_corrcoef': matthews_corrcoef(y_true, yPred),
+     'jaccard': jaccard_score(y_true, yPred),
      'precision': precision_score(y_true, yPred),
      'recall': recall_score(y_true, yPred),
      'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
@@ -300,6 +300,7 @@ for modelName in list(classification_tab_active.keys()):
                 trainedModels[modelName+"_"+modelEval]=grid
                 
                 #test score
+                #you might need to comment it out.
                 if indepTestSet!=None:  
                     y_pred = grid.predict(X_test)
                     testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
