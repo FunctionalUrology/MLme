@@ -50,7 +50,7 @@
        -  When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
        -  ```Variance Threshold```: The default ML pipeline incorporates a variance threshold feature that eliminates features with variance below the threshold specified by the user.
        -  ```No of Features to Select```: Specify the desired percentage of features to be selected from the original set by utilizing the feature selection step.
-
+       -  ```Tes Set```: User can activate the option to allocate a separate test set, comprising 30% of the initial dataset, solely for the purpose of assessing the model's performance and not for training. 
 
    -  <i>Output</i>: 
        -  A table with scores for 11 evaluation metrics for 6 ML algorithms: SVM, KNN, AdaBoost, GaussianNB, and Dummy classifier. 
