@@ -74,10 +74,19 @@ runButton=dbc.Card([dbc.CardBody([
                             html.Div(dbc.Label("Removes all features with variance lower than the given threshold.",style={"margin-top": "2px","font-size": "10px",})),
                             dbc.Input(type="number",value=1, id="varTH_automl",min=0,persistence=True,persistence_type="memory"),
                             
-                            html.Div(dbc.Label("No of Features to Select (%)",style={"font-weight": "bold","font-size": "16px"})),    
+                            html.Div(dbc.Label("No of Features to Select (%)",style={"margin-top": "10px","font-weight": "bold","font-size": "16px"})),    
                             dbc.Input(type="number",placeholder="in percentage",value=1, id="percentile",min=1,max=100,persistence=True,persistence_type="memory"),
                             
-                        
+                            dbc.Checklist(options=[{"label": "Test Set","value": "indepTestSet1"}],
+                               value=[],
+                               id="keepTest",
+                               inline=True,switch=True,labelStyle={"font-weight": "bold",
+                                                                   "font-size": "18px"},
+                               labelCheckedStyle={"color": "green"},persistence=True,persistence_type="memory",
+                               style={"margin-top": "10px"}),
+                            html.Div(dbc.Label("It is recommended to keep an independent test set solely for the purpose of testing the model and not for any kind of training.",style={"margin-top": "2px","font-size": "10px",})),
+
+        
                             html.Div(dbc.Button(html.I("      Run", className="fa fa-solid fa-play-circle-o"),
                             disabled=False,color="primary",id='run_autoML', className="me-1", 
                             style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}))
@@ -114,6 +123,22 @@ plotOptions=html.Div([
                     ])
                         
                         
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       
+scoreOptions_automl=dbc.Card([dbc.CardBody([
+                        html.Div(dbc.Label("Score Type",style={"font-weight": "bold","font-size": "16px"})),
+                        dcc.Dropdown(options=[
+                            {"label": "Training Score", "value": "train"},
+                            {"label": "Test Score", "value": "test"},
+                        ],value='train', clearable=False,style={'color': 'black'},
+                        id="scoreOptions_automl",persistence=True,persistence_type="memory"),
+                        
+# =============================================================================
+#                         html.Div(dbc.Button(html.I("  Download", className="fa fa-solid fa-download"), color="primary",id='download', className="me-1", 
+#                                  n_clicks=None,style={"margin-top": "15px","width":"100%","font-weight": "bold","font-size": "16px"}),
+#                          className="d-grid gap-2 d-md-flex justify-content-md-end")
+# =============================================================================
+                        
+                   ])],className="mt-3",color="dark", outline=True) 
 
 filterOptions=dbc.Card([dbc.CardBody([
                         #dbc.Row(html.Div(dbc.Label("Subset Results",style={"font-weight": "bold","font-size": "16px"}))),
@@ -245,13 +270,15 @@ autoML_content = dbc.Row(
         ####### side panel col
         dbc.Col([
                 dbc.Row(dbc.Col(upload_data_sidePanel, width=12)),
-                dbc.Row(dbc.Col(html.Div(id="runButton"), width=12)),
+                dbc.Row(dbc.Col(html.Div(id="hidden_scoreOptions_automl"), width=12)),
                 dbc.Row(dbc.Col(html.Div(id="plotOption_side"), width=12)),
+                dbc.Row(dbc.Col(html.Div(id="runButton"), width=12)),
                 dbc.Row(html.Div(runButton,id="hidden2",style={'display': 'none'})),
                 dbc.Row(html.Div(heatmapOptions,id="hidden3",style={'display': 'none'})),
                 dbc.Row(html.Div(spyderOptions,id="hidden4",style={'display': 'none'})),                  
                 dbc.Row(html.Div(barPlotOptions,id="hidden6",style={'display': 'none'})),
                 dbc.Row(html.Div(linePlotOptions,id="hidden7",style={'display': 'none'})),
+                dbc.Row(html.Div(scoreOptions_automl,id="hidden8",style={'display': 'none'})),
                 ],width=2),
 
         dbc.Col(dls.Hash(inputSidePanel,color="#FFFFFF"), width=10),
@@ -299,7 +326,7 @@ def getFilename_autoML(filenames):
    
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
 
-results,results_NA,failedModels,trainedModels,resultBackup,selFeat_df,logFolder={},  {},{},{},{},{},""
+results,results_NA,failedModels,trainedModels,resultBackup,selFeat_df,logFolder,testScore={},  {},{},{},{},{},"",{}
 import shutil
 @app.callback(
     [Output('output_autoML', 'children'),
@@ -308,11 +335,12 @@ import shutil
     [Input('run_autoML', 'n_clicks'),
     Input(component_id='autoML_sep', component_property='value'),
     Input('varTH_automl', 'value'),
-    Input('percentile', 'value')]
+    Input('percentile', 'value'),
+    Input('keepTest', 'value')]
        
 )
 
-def runAutoML(n_clicks,sep,varTH_automl,percentile): 
+def runAutoML(n_clicks,sep,varTH_automl,percentile,keepTest): 
     if n_clicks is not None:
         try:
             #read file  
@@ -339,19 +367,25 @@ def runAutoML(n_clicks,sep,varTH_automl,percentile):
                         shutil.rmtree(os.path.join("./autoML_output/", f))
                         
                 date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")
-                runSubscript(inputData,date,varTH_automl,percentile)
+                runSubscript(inputData,date,varTH_automl,percentile,keepTest)
                 
                 #read data
                 logFolder = os.path.join(os.getcwd(),"autoML_output/"+date)
                 fileName=logFolder+'/trainedModels.pkl'
                 
-                global results,results_NA,failedModels,trainedModels,resultBackup,selFeat_df
+                global results,results_NA,failedModels,trainedModels,resultBackup,selFeat_df,testScore
+                testScore={}
                 with open(fileName, 'rb') as handle:
                     trainedModels=pickle.load(handle)
                     print(trainedModels)  
                     refit_Metric=trainedModels["refit_Metric"]
                     selFeat_df=getSelFeat_df(trainedModels["featSel_name"])
                     
+                    if "testScore" in trainedModels.keys():
+                        testScore=pd.DataFrame(trainedModels["testScore"]).T
+                        testScore=changeColIndex(testScore)
+                        del trainedModels["testScore"]
+            
                     del trainedModels["featSel_name"]
                     del trainedModels["refit_Metric"]
                          
@@ -381,6 +415,7 @@ def runAutoML(n_clicks,sep,varTH_automl,percentile):
               Output('modelOptions_autoML', 'value'),
               Output('metricOptions_autoML', 'value'),
               Output('modelOptions_autoML', 'multi'),
+              Output('hidden_scoreOptions_automl', 'children'),
               
              [Input("plotOptions_autoML", "value")])
 def updateDropdown(plotType):
@@ -391,12 +426,21 @@ def updateDropdown(plotType):
         modelOtionList_upd=getOptionList(list(results.index),"models") 
         metricOtionList_upd=getOptionList(list(results.columns),"metric")
         
-        if plotType=="pipeline":            
-            return modelOtionList_upd[4:],metricOtionList_upd,modelOtionList_upd[4]["value"],"all",False
-        else:            
-            return modelOtionList_upd,metricOtionList_upd,"all","all",True
+        if plotType=="pipeline": 
+            if isinstance(testScore, pd.DataFrame):
+                return modelOtionList_upd[4:],metricOtionList_upd,modelOtionList_upd[4]["value"],"all",False,scoreOptions_automl
+
+            else:
+                return modelOtionList_upd[4:],metricOtionList_upd,modelOtionList_upd[4]["value"],"all",False,""
+        else:     
+            if isinstance(testScore, pd.DataFrame):
+                return modelOtionList_upd,metricOtionList_upd,"all","all",True,scoreOptions_automl
+            else:
+                return modelOtionList_upd,metricOtionList_upd,"all","all",True,""
+
+                
     else:
-        return modelOtionList,metricOtionList,"all","all",True
+        return modelOtionList,metricOtionList,"all","all",True,""
     
 
 
@@ -454,7 +498,8 @@ from helperFunctions import *
               Input(component_id='spyderColor_update_autoML', component_property='n_clicks'),
               Input("modelOptions_autoML", "value"),
               Input("metricOptions_autoML","value"),
-              Input("sortBy_autoML","value")
+              Input("sortBy_autoML","value"),
+              Input("scoreOptions_automl","value")
 
                    )
 def changePlot(value,
@@ -462,12 +507,15 @@ def changePlot(value,
                barPlotColor,barPlotText,
                linePlotColor,
                heatmapColor,heatmapText,spyderColor,spyderColor_update,
-               models,metrics,sortBy):
+               models,metrics,sortBy,scoreOptions_automl):
     
     if (len(trainedModels)>0):
         
         #update result df as per user input
-        results=subsetResltDF(resultBackup,models,metrics,sortBy)
+        if scoreOptions_automl=="train" or not isinstance(testScore, pd.DataFrame):
+            results=subsetResltDF(resultBackup,models,metrics,sortBy)
+        else:
+            results=subsetResltDF(testScore,models,metrics,sortBy)
          
         if value == "table":
             a=html.Div(heatmapOptions,style={"display":"none"})
@@ -600,7 +648,3 @@ def down_autoML_result(n_clicks):
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
 genrateInfoCallback("autoML")
 genrateCollapseCallback("autoML")    
-
-
-
-    
