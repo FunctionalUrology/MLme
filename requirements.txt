@@ -16,3 +16,4 @@ matplotlib==3.4.3
 dash-loading-spinners==1.0.0 
 dash-uploader==0.6.0
 packaging==21.3
+flask=2.0.1
