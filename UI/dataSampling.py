@@ -83,7 +83,7 @@ param_Oversampling = [
                             id="samp_strat_param_Oversampling",persistence=True,persistence_type="memory"),
                         
                         html.Div(dbc.Label("K Neighbors",style={"margin-top": "15px","font-weight": "bold",})),
-                        html.Div(dbc.Label("Number of nearest neighbours to used to construct synthetic samples. ",style={"margin-top": "12px","font-size": "10px",})),
+                        html.Div(dbc.Label("Number of nearest neighbours to used to construct synthetic samples. ",style={"margin-top": "12px","font-size": "12px",})),
 
                         dbc.Input(type="number",placeholder="5", min=1,id="k_neighbors_param_Oversampling",persistence=True,persistence_type="memory"),
                     

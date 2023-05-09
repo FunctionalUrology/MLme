@@ -34,7 +34,7 @@ def getInputNumberDiv(title,text,id,placeholder,step,minimum):
     component= dbc.FormGroup([
                 
                     html.Div(dbc.Label(title,style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                    html.Div(dbc.Label(text,style={"margin-top": "12px","font-size": "10px",})),
+                    html.Div(dbc.Label(text,style={"margin-top": "12px","font-size": "12px",})),
                     dbc.Input(type="number",min=minimum,placeholder=placeholder,id=id,persistence=True,persistence_type="memory"),
                     ])
 
@@ -78,7 +78,7 @@ SVM_content=[
     dbc.CardBody(
         [
             html.Div(dbc.Label("C: Regularization parameter",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("The strength of the regularization is inversely proportional to C. Must be strictly positive. The penalty is a squared l2 penalty. ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The strength of the regularization is inversely proportional to C. Must be strictly positive. The penalty is a squared l2 penalty. ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder=1, min=0,id="SVM-C",persistence=True,persistence_type="memory"),
 
             dbc.FormGroup([
@@ -97,7 +97,7 @@ SVM_content=[
                               "SVM-degree",3,1,1),
  
             html.Div(dbc.Label("Gamma",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’. ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’. ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(options=[
                                     {"label": "Scale", "value": "scale"},
                                     {"label": "Auto", "value": "auto"}
@@ -107,7 +107,7 @@ SVM_content=[
                                  
             dbc.FormGroup([
                             dbc.Label("Tolerance for stopping criterion",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Absolute threshold for a singular value of X to be considered significant, used to estimate the rank of X. Dimensions whose singular values are non-significant are discarded. Only used if solver is ‘svd’.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Absolute threshold for a singular value of X to be considered significant, used to estimate the rank of X. Dimensions whose singular values are non-significant are discarded. Only used if solver is ‘svd’.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -147,7 +147,7 @@ KNN_content=[
                             
    
             dbc.Label("Algorithm",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Algorithm used to compute the nearest neighbors.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Algorithm used to compute the nearest neighbors.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Ball Tree", "value": "ball_tree"},
@@ -187,7 +187,7 @@ ExtraTree_content=[
         [            
             
             dbc.Label("Criterion",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Gini", "value": "gini"},
@@ -198,7 +198,7 @@ ExtraTree_content=[
 
                         
             dbc.Label("Splitter",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The strategy used to choose the split at each node.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The strategy used to choose the split at each node.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Random", "value": "random"},
@@ -245,7 +245,7 @@ DecisionTree_content=[
         [            
             
             dbc.Label("Criterion",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Gini", "value": "gini"},
@@ -256,7 +256,7 @@ DecisionTree_content=[
 
                         
             dbc.Label("Splitter",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The strategy used to choose the split at each node.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The strategy used to choose the split at each node.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Random", "value": "random"},
@@ -303,7 +303,7 @@ RandomForest_content=[
                               "RandomForest-n_estimators",100,1,10),
                         
             dbc.Label("Criterion",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Gini", "value": "gini"},
@@ -334,7 +334,7 @@ RandomForest_content=[
             
                         
             dbc.Label("Bootstrap",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Whether samples are drawn with replacement. If False, sampling without replacement is performed.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Whether samples are drawn with replacement. If False, sampling without replacement is performed.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -348,7 +348,7 @@ RandomForest_content=[
                         
             
             dbc.Label("OOB Score",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Whether to use out-of-bag samples to estimate the generalization error. Only available if bootstrap=True.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Whether to use out-of-bag samples to estimate the generalization error. Only available if bootstrap=True.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -357,7 +357,7 @@ RandomForest_content=[
                 persistence=True,persistence_type="memory"),
             
             dbc.Label("Warm Start",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -390,7 +390,7 @@ LinearDiscriminantAnalysis_content=[
                 persistence=True,persistence_type="memory"),
             
             dbc.Label("Shrinkage",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Note that shrinkage works only with ‘lsqr’ and ‘eigen’ solvers.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Note that shrinkage works only with ‘lsqr’ and ‘eigen’ solvers.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "None: no shrinkage ", "value": None},
@@ -405,7 +405,7 @@ LinearDiscriminantAnalysis_content=[
                      
             dbc.FormGroup([
                             dbc.Label("Tolerance",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Absolute threshold for a singular value of X to be considered significant, used to estimate the rank of X. Dimensions whose singular values are non-significant are discarded. Only used if solver is ‘svd’.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Absolute threshold for a singular value of X to be considered significant, used to estimate the rank of X. Dimensions whose singular values are non-significant are discarded. Only used if solver is ‘svd’.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -460,7 +460,7 @@ LogisticRegression_content=[
                         
                         
             dbc.Label("Dual or Primal formulation",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Prefer dual=False when n_samples > n_features. Implemented for l2 penalty with liblinear solver.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Prefer dual=False when n_samples > n_features. Implemented for l2 penalty with liblinear solver.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -487,7 +487,7 @@ LogisticRegression_content=[
                         
             
             dbc.Label("Fit Intercept",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Specifies if a constant (a.k.a. bias or intercept) should be added to the decision function.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Specifies if a constant (a.k.a. bias or intercept) should be added to the decision function.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True ", "value": True},
@@ -498,7 +498,7 @@ LogisticRegression_content=[
             
             dbc.FormGroup([
                             dbc.Label("Solver",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Algorithm to use in the optimization problem.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Algorithm to use in the optimization problem.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "newton-cg", "value": "newton-cg"},
@@ -538,7 +538,7 @@ GaussianProcess_content=[
                         
                         
             dbc.Label("Warm Start",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("If warm-starts are enabled, the solution of the last Newton iteration on the Laplace approximation of the posterior mode is used as initialization for the next call of _posterior_mode(). ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("If warm-starts are enabled, the solution of the last Newton iteration on the Laplace approximation of the posterior mode is used as initialization for the next call of _posterior_mode(). ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -594,7 +594,7 @@ GradientBoosting_content=[
     dbc.CardBody(
         [            
             dbc.Label("Loss",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("The loss function to be optimized. ‘deviance’ refers to deviance (= logistic regression) for classification with probabilistic outputs. For loss ‘exponential’ gradient boosting recovers the AdaBoost algorithm.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("The loss function to be optimized. ‘deviance’ refers to deviance (= logistic regression) for classification with probabilistic outputs. For loss ‘exponential’ gradient boosting recovers the AdaBoost algorithm.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "Deviance", "value": "deviance"},
@@ -615,7 +615,7 @@ GradientBoosting_content=[
             
             dbc.FormGroup([
                             dbc.Label("Criterion",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The function to measure the quality of a split.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "Friedman Mse: mean squared error with improvement score by Friedman", "value": "friedman_mse"},
@@ -649,7 +649,7 @@ GradientBoosting_content=[
                               "GradientBoosting-max_leaf_nodes","default None",1,0),
                         
             dbc.Label("Warm Start",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -702,7 +702,7 @@ Bagging_content=[
             
                         
             dbc.Label("Bootstrap",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Whether samples are drawn with replacement. If False, sampling without replacement is performed.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Whether samples are drawn with replacement. If False, sampling without replacement is performed.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -711,7 +711,7 @@ Bagging_content=[
                 persistence=True,persistence_type="memory"),
             
             dbc.Label("Bootstrap features",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Whether features are drawn with replacement.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Whether features are drawn with replacement.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -720,7 +720,7 @@ Bagging_content=[
                 persistence=True,persistence_type="memory"),
             
             dbc.Label("OOB Score",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("Whether to use out-of-bag samples to estimate the generalization error. Only available if bootstrap=True.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Whether to use out-of-bag samples to estimate the generalization error. Only available if bootstrap=True.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -729,7 +729,7 @@ Bagging_content=[
                 persistence=True,persistence_type="memory"),
             
             dbc.Label("Warm Start",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "12px",})),
             dbc.RadioItems(
                 options=[
                     {"label": "True", "value": True},
@@ -769,7 +769,7 @@ QuadraticDiscriminantAnalysis_content=[
         [
             dbc.FormGroup([
                             dbc.Label("Absolute Threshold",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Absolute threshold for a singular value to be considered significant, used to estimate the rank of Xk where Xk is the centered matrix of samples in class k.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Absolute threshold for a singular value to be considered significant, used to estimate the rank of Xk where Xk is the centered matrix of samples in class k.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -796,7 +796,7 @@ NearestCentroid_content=[
         [
             dbc.FormGroup([
                             dbc.Label("Metric",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The metric to use when calculating distance between instances in a feature array.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The metric to use when calculating distance between instances in a feature array.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "cityblock", "value": "cityblock"},
@@ -811,7 +811,7 @@ NearestCentroid_content=[
                                 id="NearestCentroid-metric",persistence=True,persistence_type="memory"),
                             
                     html.Div(dbc.Label("Shrink Threshold",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                    html.Div(dbc.Label("Between 0 to 1",style={"margin-top": "12px","font-size": "10px",})),
+                    html.Div(dbc.Label("Between 0 to 1",style={"margin-top": "12px","font-size": "12px",})),
                     dbc.Input(type="number",placeholder="default None", id="NearestCentroid-shrink_threshold",persistence=True,persistence_type="memory"),
                             
 
@@ -864,7 +864,7 @@ SGD_content=[
                                 id="SGD-penalty",persistence=True,persistence_type="memory"),
                             
                             dbc.Label("Alpha",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Constant that multiplies the regularization term. The higher the value, the stronger the regularization. ",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Constant that multiplies the regularization term. The higher the value, the stronger the regularization. ",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -878,7 +878,7 @@ SGD_content=[
                             
                             
                             dbc.Label("Fit Intercept",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Whether the intercept should be estimated or not. If False, the data is assumed to be already centered.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Whether the intercept should be estimated or not. If False, the data is assumed to be already centered.",style={"margin-top": "12px","font-size": "12px",})),
                             dbc.RadioItems(
                                 options=[
                                     {"label": "True", "value": True},
@@ -892,7 +892,7 @@ SGD_content=[
                               "SGD-max_iter",1000,1,10),
                         
                             dbc.Label("Tol",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The stopping criterion.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The stopping criterion.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -920,7 +920,7 @@ SGD_content=[
                               "SGD-n_iter_no_change",5,5,2),
                                                         
                             dbc.Label("Warm Start",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new ensemble. ",style={"margin-top": "12px","font-size": "12px",})),
                             dbc.RadioItems(
                                 options=[
                                     {"label": "True", "value": True},

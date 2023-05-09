@@ -24,7 +24,7 @@ seed_core=[
         [
             
             html.Div(dbc.Label("Random Seed",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("A random seed is used to ensure that results are reproducible.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("A random seed is used to ensure that results are reproducible.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder="default 123", min=0,step=1,id="random_seed",persistence=True,persistence_type="memory"),
 
             html.Div(dbc.Label("No. of CPU/Core",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),

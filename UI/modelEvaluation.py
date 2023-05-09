@@ -46,7 +46,7 @@ modelEval_metrics=dbc.FormGroup([
                             id="modelEval_metrics",persistence=True,persistence_type="memory"),
                 
                 dbc.Label("Refit Metric",style={"margin-top": "20px","font-weight": "bold","font-size": "18px"}),
-                html.Div(dbc.Label("For multiple metric evaluation, this needs to be a str denoting the scorer that would be used to find the best parameters for refitting the estimator at the end.",style={"margin-top": "10px","font-size": "10px",})),
+                html.Div(dbc.Label("For multiple metric evaluation, this needs to be a str denoting the scorer that would be used to find the best parameters for refitting the estimator at the end.",style={"margin-top": "10px","font-size": "12px",})),
                 dcc.Dropdown(
                             options=[
                                 {"label": "Accuracy", "value": "accuracy"},
@@ -100,7 +100,7 @@ def getSplitDiv(id):
     component= dbc.FormGroup([
                  
                     html.Div(dbc.Label("Number of folds",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                    html.Div(dbc.Label("Must be at least 2.",style={"margin-top": "12px","font-size": "10px",})),
+                    html.Div(dbc.Label("Must be at least 2.",style={"margin-top": "12px","font-size": "12px",})),
                     dbc.Input(type="number",placeholder=5, min=2,id=id,persistence=True,persistence_type="memory"),
                     ])
 
@@ -111,7 +111,7 @@ def getRepeatDiv(id):
     component= dbc.FormGroup([
                 
                     html.Div(dbc.Label("Number of Repeats",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                    html.Div(dbc.Label("Number of times cross-validator needs to be repeated.",style={"margin-top": "12px","font-size": "10px",})),
+                    html.Div(dbc.Label("Number of times cross-validator needs to be repeated.",style={"margin-top": "12px","font-size": "12px",})),
                     dbc.Input(type="number",placeholder=10, min=1,id=id,persistence=True,persistence_type="memory"),
                     ])
 
@@ -123,7 +123,7 @@ def getBoolDiv(id):
     component= dbc.FormGroup([
                 
                     html.Div(dbc.Label("Shuffle",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                    html.Div(dbc.Label("Whether to shuffle the data before splitting into batches.",style={"margin-top": "12px","font-size": "10px",})),
+                    html.Div(dbc.Label("Whether to shuffle the data before splitting into batches.",style={"margin-top": "12px","font-size": "12px",})),
                     dbc.RadioItems(options=[
                                     {"label": "True", "value": True},
                                     {"label": "False", "value": False}
@@ -223,7 +223,7 @@ LeavePOut_content=[
     dbc.CardBody(
         [
             html.Div(dbc.Label("p",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Size of the test sets. Must be strictly less than the number of samples.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Size of the test sets. Must be strictly less than the number of samples.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",value=10, min=10,id="LeavePOut-p",persistence=True,persistence_type="memory"),
 
 
@@ -242,11 +242,11 @@ ShuffleSplit_content=[
         [
             
             html.Div(dbc.Label("Test Size",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. If None, the value is set to the complement of the train size. If train size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. If None, the value is set to the complement of the train size. If train size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder="None", min=0.1,max=1.0,id="ShuffleSplit-test_size",persistence=True,persistence_type="memory"),
 
             html.Div(dbc.Label("Train Size",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Represent the proportion of the dataset to include in the train split. If None, the value is set to the complement of the test size. If test size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Represent the proportion of the dataset to include in the train split. If None, the value is set to the complement of the test size. If test size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder="None", min=0.1,max=1.0,id="ShuffleSplit-train_size",persistence=True,persistence_type="memory"),   
                     
             dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="ShuffleSplit-info-btn",n_clicks=0,style={"margin-top": "15px"}),
@@ -264,11 +264,11 @@ StratifiedShuffleSplit_content=[
         [
             
             html.Div(dbc.Label("Test Size",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. If None, the value is set to the complement of the train size. If train size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. If None, the value is set to the complement of the train size. If train size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder="None", min=0.1,max=1.0,id="StratifiedShuffleSplit-test_size",persistence=True,persistence_type="memory"),
 
             html.Div(dbc.Label("Train Size",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Represent the proportion of the dataset to include in the train split. If None, the value is set to the complement of the test size. If test size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Represent the proportion of the dataset to include in the train split. If None, the value is set to the complement of the test size. If test size is also None, it will be set to 0.1.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",placeholder="None", min=0.1,max=1.0,id="StratifiedShuffleSplit-train_size",persistence=True,persistence_type="memory"),   
                     
             dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="StratifiedShuffleSplit-info-btn",n_clicks=0,style={"margin-top": "15px"}),
@@ -285,7 +285,7 @@ NestedCV_content=[
     dbc.CardBody(
         [
             
-            html.Div(dbc.Label("NOTE: StratifiedKFold method will be used as inner and outer loop of the nested-cross validation procedure.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("NOTE: StratifiedKFold method will be used as inner and outer loop of the nested-cross validation procedure.",style={"margin-top": "12px","font-size": "12px",})),
 
             getSplitDiv("NestedCV-n_splits"),
             getBoolDiv("NestedCV-shuffle"),
@@ -306,7 +306,7 @@ indeptestset_content=[
         [
             
             html.Div(dbc.Label("Test Dataset Size",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. Value should be bewteen 0 to 0.5.",style={"margin-top": "12px","font-size": "10px",})),
+            html.Div(dbc.Label("Represent the proportion of the dataset to include in the test split. Value should be bewteen 0 to 0.5.",style={"margin-top": "12px","font-size": "12px",})),
             dbc.Input(type="number",value=0.25, min=0.1,max=0.5,id="Independent Test Set-test_size",persistence=True,persistence_type="memory"),
    
             dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="Independent Test Set-info-btn",n_clicks=0,style={"margin-top": "15px"}),

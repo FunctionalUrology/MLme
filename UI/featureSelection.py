@@ -68,7 +68,7 @@ VarianceThreshold_content=[
         [
             dbc.FormGroup([
                             html.Div(dbc.Label("Threshold",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"})),
-                            html.Div(dbc.Label("Features with a training-set variance lower than this threshold will be removed. The default is to keep all features with non-zero variance, i.e. remove the features that have the same value in all samples.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Features with a training-set variance lower than this threshold will be removed. The default is to keep all features with non-zero variance, i.e. remove the features that have the same value in all samples.",style={"margin-top": "12px","font-size": "12px",})),
                             dbc.Input(type="number",placeholder="0.0", min=0,id="VarianceThreshold-threshold",persistence=True,persistence_type="memory"),
                     
                          ]),
@@ -127,7 +127,7 @@ SelectFpr_content=[
             getScoreFun("SelectFpr"),
             dbc.FormGroup([
                             dbc.Label("Alpha",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The highest p-value for features to be kept.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The highest p-value for features to be kept.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -153,7 +153,7 @@ SelectFdr_content=[
             getScoreFun("SelectFdr"),
             dbc.FormGroup([
                             dbc.Label("Alpha",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The highest uncorrected p-value for features to keep.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The highest uncorrected p-value for features to keep.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -179,7 +179,7 @@ SelectFwe_content=[
             getScoreFun("SelectFwe"),
             dbc.FormGroup([
                             dbc.Label("Alpha",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("The highest uncorrected p-value for features to keep.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("The highest uncorrected p-value for features to keep.",style={"margin-top": "12px","font-size": "12px",})),
                             dcc.Dropdown(
                                 options=[
                                     {"label": "0.01", "value": 0.01},
@@ -206,7 +206,7 @@ RFECV_content=[
             getEstimator("RFECV"),
             dbc.FormGroup([
                             dbc.Label("Step",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("If greater than or equal to 1, then step corresponds to the (integer) number of features to remove at each iteration. If within (0.0, 1.0), then step corresponds to the percentage (rounded down) of features to remove at each iteration.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("If greater than or equal to 1, then step corresponds to the (integer) number of features to remove at each iteration. If within (0.0, 1.0), then step corresponds to the percentage (rounded down) of features to remove at each iteration.",style={"margin-top": "12px","font-size": "12px",})),
                             dbc.Input(type="number",placeholder="1",min=1, id="RFECV-step",persistence=True,persistence_type="memory"),
                             
                             
@@ -258,7 +258,7 @@ SequentialFeatureSelector_content=[
                             dbc.Input(type="number",placeholder="Half of the features will be selected by default",min=1, id="SequentialFeatureSelector-n_features_to_select",persistence=True,persistence_type="memory"),
                         
                             dbc.Label("Direction",style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}),
-                            html.Div(dbc.Label("Whether to perform forward selection or backward selection.",style={"margin-top": "12px","font-size": "10px",})),
+                            html.Div(dbc.Label("Whether to perform forward selection or backward selection.",style={"margin-top": "12px","font-size": "12px",})),
                             dbc.RadioItems(
                                 options=[
                                     {"label": "Forward", "value": "forward"},

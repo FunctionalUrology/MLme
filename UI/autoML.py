@@ -71,10 +71,10 @@ inputSidePanel=dbc.Card([dbc.CardBody([
 runButton=dbc.Card([dbc.CardBody([
     
                             html.Div(dbc.Label("Variance Threshold",style={"font-weight": "bold","font-size": "16px"})),    
-                            html.Div(dbc.Label("Removes all features with variance lower than the given threshold.",style={"margin-top": "2px","font-size": "10px",})),
+                            html.Div(dbc.Label("Removes all features with variance lower than the given threshold.",style={"margin-top": "2px","font-size": "12px",})),
                             dbc.Input(type="number",value=1, id="varTH_automl",min=0,persistence=True,persistence_type="memory"),
                             
-                            html.Div(dbc.Label("No of Features to Select (%)",style={"margin-top": "10px","font-weight": "bold","font-size": "16px"})),    
+                            html.Div(dbc.Label("Number of Features to Select (%)",style={"margin-top": "10px","font-weight": "bold","font-size": "16px"})),    
                             dbc.Input(type="number",placeholder="in percentage",value=1, id="percentile",min=1,max=100,persistence=True,persistence_type="memory"),
                             
                             dbc.Checklist(options=[{"label": "Test Set","value": "indepTestSet1"}],
@@ -84,7 +84,7 @@ runButton=dbc.Card([dbc.CardBody([
                                                                    "font-size": "18px"},
                                labelCheckedStyle={"color": "green"},persistence=True,persistence_type="memory",
                                style={"margin-top": "10px"}),
-                            html.Div(dbc.Label("It is recommended to keep an independent test set solely for the purpose of testing the model and not for any kind of training.",style={"margin-top": "2px","font-size": "10px",})),
+                            html.Div(dbc.Label("It is recommended to keep an independent test set solely for the purpose of testing the model and not for any kind of training.",style={"margin-top": "2px","font-size": "12px",})),
 
         
                             html.Div(dbc.Button(html.I("      Run", className="fa fa-solid fa-play-circle-o"),
@@ -648,3 +648,7 @@ def down_autoML_result(n_clicks):
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
 genrateInfoCallback("autoML")
 genrateCollapseCallback("autoML")    
+
+
+
+    
