@@ -156,9 +156,9 @@ def switch_tab(at):
     elif at == "autoML":
         return autoML_content 
     elif at == "customML":
-        return tabs
+        return tabs 
     elif at == "result":
-        return uploadResult_content
+        return uploadResult_content 
     
     elif at == "about":
         return about 
