@@ -355,7 +355,8 @@ def saveUserInputData(userInputData):
     #create filenames
     current_time = datetime.now().strftime("%H_%M_%S")
     fileName="inputParameters_"+current_time+".pkl"
-    zipfileName=folder+"data_"+current_time+".zip"
+    zipfileName=folder+"_"+current_time+".zip"
+    
     
     #Save user input data as pkl object
     with open(fileName, 'wb') as handle:
@@ -1180,7 +1181,6 @@ def getClasssDist(df_all,pal):
     targetClasses_count["Class"]=list(targetClasses_count.index)
     
     
-    
     fig = fig = px.bar(targetClasses_count, x='Class', y='No of Samples Per Class',text_auto=True)
     fig=fig.update_layout(template="simple_white", 
                         height=500,width=1020)
@@ -1188,8 +1188,8 @@ def getClasssDist(df_all,pal):
     fig.update_traces(marker_color=groupColorPal)
     #fig.show()
     return dcc.Graph(figure=fig,config=config)
-
-
+    
+    
 from sklearn import set_config
 from sklearn.utils import estimator_html_repr
 import dash_bootstrap_components as dbc
