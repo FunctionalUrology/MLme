@@ -34,8 +34,8 @@
     -  The Data Exploration feature enables users to upload datasets and analyze them with statistical visualizations, providing insights into data patterns, trends, and outliers for informed decisions in developing ML pipelines.  
     
     -  <i>Input</i>:  
-       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt). 
-       -  When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
+       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
+            -  **Note**: When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
    
     -  <i>Output</i>:
        -  Users will be able to perform in-depth analysis on their datasets using statistical summary tables and five different plots, including density and correlation matrix plots. The analysis can be easily conducted by selecting the desired option from the ```Plot/Table Type``` dropdown menu.
@@ -47,7 +47,8 @@
   
    -  <i>Input</i>:  
        -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
-       -  When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
+           
+           -  **Note**: When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
        -  ```Variance Threshold```: The default ML pipeline incorporates a variance threshold feature that eliminates features with variance below the threshold specified by the user.
        -  ```No of Features to Select```: Specify the desired percentage of features to be selected from the original set by utilizing the feature selection step.
        -  ```Tes Set```: User can activate the option to allocate a separate test set, comprising 30% of the initial dataset, solely for the purpose of assessing the model's performance and not for training. 
@@ -65,14 +66,24 @@
    
    -  <i>Input</i>:  
        -  Users can easily choose which preprocessing steps (such as scaling, data resampling, and feature selection), classifier, model evaluation method, and evaluation metric score to include in their pipeline by clicking on a toggle button.
-       -  The parameters of each individual algorithm can be customized by clicking on the ```Parameter``` button, which will provide a list of corresponding parameters that the user can adjust to their preference. If the user does not make any changes, default parameters will be used.
-       - While preprocessing steps are optional, users are required to select at least one classifier, a model evaluation method, and a metric score.
+       -  The parameters of each individual algorithm can be customized by clicking on the ```Parameter``` button, which will provide a list of corresponding parameters that the user can adjust to their preference. If the user does not make any changes, default parameters will be used.  
+           
+       - **Note**: While preprocessing steps are optional, users are required to select at least one classifier, a model evaluation method, and a metric score.
 
    -  <i>Output</i>:  
-       -  After selecting all the desired algorithms/steps, the user can click on the ```submit``` button to download a compressed zip file that includes files such as README.txt, inputParameter.pkl, and script.py.
-       - The user can execute the designed pipeline on either their local machine or cluster by using the following command.  
-         ```python script.py path/to/data.csv "seprator" inputParameter.pkl```
-       - After the pipeline has been executed, it will generate a compressed zip file as output, which includes a log.txt and results.pkl file. The user can then upload the results.pkl file to the ```Visualization``` tab of ---tool name-- to interpret the results.
+       -  After selecting all the desired algorithms/steps, the user can click on the ```submit``` button to download a compressed zip file (userInputData.zip) that includes files such as README.txt, inputParameter.pkl, and scriptTemplate.py.
+       -  The user can run the designed pipeline on either their local machine or a cluster.
+   -  <i>How to run a custom-designed pipeline?</i> 
+       - Open your terminal and change your directory to previosuly downloaded folder (userInputData) from customML.
+       - Run the follwoing command to execute the pipeline.
+       
+         ``` python scriptTemplate.py -i path/to/input.csv -p inputParameters.pkl -s tab -o .```
+       - **Input file format:** A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
+       - **Pipeline output:** After the pipeline has been executed, it will generate a compressed zip file as output, which includes a log.txt and results.pkl file. The user can then upload the results.pkl file to the ```Visualization``` tab of ---tool name-- to interpret the results.
+       - **Tags description:**
+
+          ```usage: scriptTemplate.py [-h] [-i INPUT] [-s SEPARATOR] [-p PARAMETERS] [-o OUTPUT]```
+          <p align="center"><img src="./assets/tags-description.png" width="80%" align="middle"> </p> 
  
 - ### Visualization
  
