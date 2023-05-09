@@ -54,43 +54,136 @@ def getTestScores(whichMetrics,y_true,yPred,k):
      'recall': recall_score(y_true, yPred),
      'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
      'roc_auc': roc_auc_score(y_true, yPred)}
-    
+
     testScores={}
 
     for metric in whichMetrics:
         if metric in metrics.keys():
             testScores[metric]=metrics[metric]
-            
+
     return testScores
+
+# =============================================================================
+# #Setup argument switch
+# =============================================================================
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+
+# Parse command line arguments
+parser = ArgumentParser(description="Execute the custom machine learning pipeline from customML.",
+                        formatter_class=ArgumentDefaultsHelpFormatter)
+requiredNamed = parser.add_argument_group('required arguments')
+
+requiredNamed.add_argument("-i", "--input",
+                    help="A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. ")
+
+requiredNamed.add_argument("-s", "--separator",
+                    help="Delimiter to use for input file. Possible options are 'comma' and 'tab'. Please use the keywords not the symbols. For example use 'comma' not ','.")
+
+requiredNamed.add_argument("-p", "--parameters",
+                    help="A pickle file (inputParameter.pkl) from customML.")
+
+parser.add_argument("-o", "--output", default=".",
+                    help="A directory where all the results will be saved.")
+args = vars(parser.parse_args())
+
+# =============================================================================
+# #check input data exist
+# =============================================================================
+inputFile=args["input"]
+separatorInput=args["separator"]
+inputParameterFile=args["parameters"]
+outputPath=args["output"]
+
+
+##check inputFile
+if inputFile==None:
+    print("\n Following error occured: \n\t\t"+" Please provide input file using -i tag.")
+    sys.exit(1)
+
+if os.path.exists(inputFile)==False:
+    print("\n Following error occured: \n\t\t"+inputFile + " file does not exist.")
+    sys.exit(1)
+
+# #check separatorInput
+if separatorInput==None:
+    print("\n Following error occured: \n\t\t"+" Please provide file delimiter using -s tag.")
+    sys.exit(1)
+
+if separatorInput!="comma" and separatorInput!="tab":
+    print("\n Following error occured: \n\t\t The given delimiter is not valid. Possible options are 'comma' and 'tab'. Please use the keywords not the symbols. For example use 'comma' not ','")
+    sys.exit(1)
+
+# #check inputParameterFile
+if inputParameterFile==None:
+    print("\n Following error occured: \n\t\t"+" Please provide parameter file (inputParameter.pkl) using -p tag.")
+    sys.exit(1)
+
+if os.path.exists(inputParameterFile)==False:
+    print("\n Following error occured: \n\t\t"+inputParameterFile + " file does not exist.")
+    sys.exit(1)
+
+if inputParameterFile.endswith(".pkl")==False:
+    print("\n Following error occured: \n\t\t"+inputParameterFile + " is not a pickle (pkl) file. Please provide a pickle file (inputParameter.pkl) from customML.")
+    sys.exit(1)
+
+# #check outputPath
+if os.path.exists(outputPath)==False:
+    print("\n Following error occured: \n\t\t"+outputPath + " directory does not exist.")
+    sys.exit(1)
+
+if outputPath!="." and os.path.isdir(outputPath)==False:
+    print("\n Following error occured: \n\t\t"+outputPath+" is not a directory. Please provide a directory.")
+    sys.exit(1)
+
+#if it is . the getcwd
+if outputPath==".":
+    outputPath=os.getcwd()
+
+
+#set seprators symbol
+if separatorInput=="comma":
+    separatorInput=","
+else:
+    separatorInput="\t"
+
+
 
 # =============================================================================
 # #write logs
 # =============================================================================
 date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")
 
-logFolder = os.path.join(os.getcwd(),"logs")
-filename=os.path.join(logFolder,date+'-log.txt')
+#logFolder = os.path.join(os.getcwd(),"logs")
+logFolder = os.path.join(outputPath,'result') #date+
+
+filename=os.path.join(logFolder,'log.txt')
 
 if os.path.exists(logFolder):
     sys.stdout = open(filename, 'w')
 else:
-  os.makedirs(logFolder)
-  sys.stdout = open(filename, 'w')
+    os.makedirs(logFolder)
+    sys.stdout = open(filename, 'w')
+
 
 # =============================================================================
 # #read data
 # =============================================================================
+
+print("=============================================================================")
+print("\t\tInput data/arguments")
+print("=============================================================================")
+print(args)
+
 print("=============================================================================")
 print("\t\tReading data start...")
 print("=============================================================================")
 
 try:
-    print(sys.argv)
-    data=pd.read_csv(sys.argv[1],sep=sys.argv[2],index_col=0)
+
+    data=pd.read_csv(inputFile,sep=separatorInput,index_col=0)
 except Exception as e:
     print(e)
     sys.exit(1)
-
 
 X= data.iloc[:,0:-1]
 y = data.iloc[:,-1]
@@ -129,13 +222,20 @@ print("\n\n\n\n=================================================================
 print("\t\tReading user input data...")
 print("=============================================================================\n\n\n\n")
 
+
+
 # =============================================================================
-# with open('userInputData.pkl', 'rb') as handle:
+# with open(inputParameterFile, 'rb') as handle:
 #     userInputData=pickle.load(handle)
 # =============================================================================
 
-with open(sys.argv[3], 'rb') as handle:
-    userInputData=pickle.load(handle)
+try:
+
+    with open(inputParameterFile, 'rb') as handle:
+        userInputData=pickle.load(handle)
+except Exception as e:
+    print(e)
+    sys.exit(1)
 
 print(userInputData)
 
@@ -162,7 +262,7 @@ if "matthews_corrcoef" in modelEval_metrices:
     modelEval_metrices["matthews_corrcoef"]=make_scorer(matthews_corrcoef)
 else:
     modelEval_metrices = dict(zip(modelEval_metrices, modelEval_metrices))
-    
+
 #change average for f1
 if "f1_micro" in list(modelEval_metrices.keys()):
     modelEval_metrices["f1_micro"]=make_scorer(f1_score,average="micro")
@@ -174,7 +274,7 @@ if "f1_weighted" in list(modelEval_metrices.keys()):
 #change k for top k acc
 if "top_k_accuracy" in list(modelEval_metrices.keys()):
     modelEval_metrices["top_k_accuracy"]=make_scorer(top_k_accuracy_score,k=len(counter)-1)
-    
+
 #check if it is a multiclass. If yes change the average parameter
 if len(counter)>2:
     modelEval_metrices.pop("roc_auc", None)
@@ -234,7 +334,7 @@ for modelName in list(classification_tab_active.keys()):
 
         parameters={}
         pipe_list=[('vt', VarianceThreshold())]
-        
+
         if len(scalers)>0 and scalers[0]!=[]:
             parameters['scaler'] = scalers
             pipe_list.append(('scaler',  scalers[0]))
@@ -249,7 +349,7 @@ for modelName in list(classification_tab_active.keys()):
 
         pipe_list.append(('classifier', model))
         pipe = Pipeline_imb(pipe_list)
-	
+
 # =============================================================================
 #         parameters = {'scaler': scalers,       #£££££££££££ Remove in final version
 #                   'sampler': samplers}         #£££££££££££ Remove in final version
@@ -276,21 +376,21 @@ for modelName in list(classification_tab_active.keys()):
             if modelEval=="NestedCV":
                 nested_scores = cross_validate(grid, X, y, scoring=modelEval_metrices,cv=cv, n_jobs=n_jobs)
                 grid=grid.fit(X, y)
-                
+
                 trainedModels[modelName+"_"+modelEval]={}
                 trainedModels[modelName+"_"+modelEval]["grid"]=grid
                 trainedModels[modelName+"_"+modelEval]["nested_results"]=nested_scores
-                
+
                 #test score
-                if indepTestSet!=None:                
+                if indepTestSet!=None:
                     y_pred = grid.predict(X_test)
                     testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
 
 
-                    
+
                 print("Best Score for given refit metric ("+refit_Metric+") :  "+str(grid.best_score_))
                 print("\n\n\t\t")
-                
+
                 if "featSel" in grid.best_estimator_.named_steps.keys():
                     featureIndex_name[modelName+"_"+modelEval]=X.iloc[:,grid.best_estimator_.named_steps['featSel'].get_support(indices=True)].columns.tolist()
 
@@ -298,16 +398,16 @@ for modelName in list(classification_tab_active.keys()):
             else:
                 grid=grid.fit(X, y)
                 trainedModels[modelName+"_"+modelEval]=grid
-                
+
                 #test score
                 #you might need to comment it out.
-                if indepTestSet!=None:  
+                if indepTestSet!=None:
                     y_pred = grid.predict(X_test)
                     testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
-                    
+
                 print("Best Score for given refit metric ("+refit_Metric+") :  "+str(grid.best_score_))
                 print("\n\n\t\t")
-                
+
                 if "featSel" in grid.best_estimator_.named_steps.keys():
                     featureIndex_name[modelName+"_"+modelEval]=X.iloc[:,grid.best_estimator_.named_steps['featSel'].get_support(indices=True)].columns.tolist()
 
@@ -330,6 +430,24 @@ print("\t\tPipeline Done")
 print("=============================================================================\n\n\n\n")
 
 #Save user input data as pkl object
-fileName=sys.argv[1].split(".")[0]+"_"+'trainedModels.pkl'
+#fileName=inputFile.split(".")[0]+"_"+'trainedModels.pkl'
+fileName=os.path.join(logFolder,'results.pkl')
 with open(fileName, 'wb') as handle:
     pickle.dump(trainedModels, handle)
+
+sys.stdout.close()
+
+#zip result folder
+import os, zipfile,shutil
+
+name = logFolder
+zip_name = name + '.zip'
+
+with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zip_ref:
+    for folder_name, subfolders, filenames in os.walk(name):
+        for filename in filenames:
+            file_path = os.path.join(folder_name, filename)
+            zip_ref.write(file_path, arcname=os.path.relpath(file_path, name))
+
+#remove result folder after zipping
+shutil.rmtree(logFolder)
