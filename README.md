@@ -36,7 +36,7 @@
         
     -  <i>**Step 1: Input**</i>  
        
-       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). You can refer to the example input data for guidance. Here's an example of how your input data should look.
+       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). Here's an example of how your input data should look.
        
             | Sample   | Feature 1 | Feature 2 | Target Class |
             |----------|-----------|-----------|--------------|
@@ -59,7 +59,7 @@
   
    -  <i>**Step 1: Input**</i>  
        
-       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). You can refer to the example input data for guidance. Here's an example of how your input data should look.
+       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). Here's an example of how your input data should look.
        
             | Sample   | Feature 1 | Feature 2 | Target Class |
             |----------|-----------|-----------|--------------|
