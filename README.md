@@ -1,11 +1,29 @@
 # Summary
-<div style="text-align: right">  The github repo hosts a tool called "----tool name----". It offers data exploration, auto-ML, custom ML, and visualization features to enable users to use machine learning techniques in their research, irrespective of their technical skills. The tool's objective is to provide researchers with a comprehensive platform to explore their datasets, design tailor-fit ML pipelines, and visualize results in a clear and aesthetically pleasing manner. </div> 
+<div style="text-align: right">  The github repo hosts a tool called "----tool name----". By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, "----tool name----" fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. "----tool name----" serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
 
+# Demo Server
+We have set up a demo server for ----tool name---- for demonstration purposes. Please  [-----]() to launch it. Please note that it may take a moment to load. <br><br> User can use the [example input data](#example-input-data) to test it.
 
+# Graphical Abstract
+<p align="center"><img src="./assets/" width="80%" align="middle"> </p> 
 
-
-
-# Installation
+# Installation (via Docker)
+  1. **Prerequisite:** Before proceeding with the installation, ensure that Docker is installed and running. If you haven't installed Docker yet, you can follow the [official Docker tutorial](https://docs.docker.com/get-docker/) for installation instructions.
+  2. To obtain the ----tool name----  docker image, you may open your terminal and run the provided command.
+       
+       ```
+       docker pull                
+       ```
+       
+  3. To launch ----tool name---- , please run the given command in your terminal after performing the previous steps.
+       
+       ```
+       docker run -p 8080:80                      
+       ```
+       
+  4. Paste http://localhost:8080/ in your browser to access ----tool name----.
+  
+# Installation (from source code)
 
   - ### Prerequisite 
     
@@ -26,6 +44,10 @@
        ```python -m main``` 
        
   - ### Errors you may encounter
+  
+# Example Input Data
+  - For ```Data Exploration``` and ```AutoML``` : https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt
+  - For ```Visualization``` : https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/results_for_Visulization.pkl
 
 
 # Tutorial
@@ -175,7 +197,7 @@
    -  This feature enables users to effortlessly interpret and analyze their findings with the help of several interactive tables and plots.
    
    -  <i>Input</i>:  
-       -  results.pkl file from ```Auto ML``` or ```Custom ML```. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/results_for_Visulization.pkl).
+       -  results.pkl file from ```AutoML``` or ```CustomML```. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/results_for_Visulization.pkl).
        
    -  <i>Output</i>: 
        -  A range of tables and plots are available for comparative analysis of model performance. Users can customize and download all of the plots in high quality, making them suitable for publication.
