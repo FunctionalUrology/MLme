@@ -28,63 +28,148 @@
   - ### Errors you may encounter
 
 
-# Features
+# Tutorial
 
-  - ### Data Exploration
-    -  The Data Exploration feature enables users to upload datasets and analyze them with statistical visualizations, providing insights into data patterns, trends, and outliers for informed decisions in developing ML pipelines.  
-    
-    -  <i>Input</i>:  
-       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
-            -  **Note**: When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
-   
-    -  <i>Output</i>:
-       -  Users will be able to perform in-depth analysis on their datasets using statistical summary tables and five different plots, including density and correlation matrix plots. The analysis can be easily conducted by selecting the desired option from the ```Plot/Table Type``` dropdown menu.
-       -  The users have the ability to download plots by clicking on the camera button that is provided on all the plots.
-       
- - ### Auto ML
- 
-   - The Auto ML feature runs a default machine learning pipeline, allowing researchers to analyze their datasets without technical expertise. The pipeline includes preprocessing, feature selection, and training and evaluation of multiple classification models, including a dummy classifier. 
+  - ## Data Exploration
   
-   -  <i>Input</i>:  
-       -  A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
-           
-           -  **Note**: When uploading a file, users must ensure that they select the correct separator using the ```Sep``` dropdown menu to avoid errors.
-       -  ```Variance Threshold```: The default ML pipeline incorporates a variance threshold feature that eliminates features with variance below the threshold specified by the user.
-       -  ```No of Features to Select```: Specify the desired percentage of features to be selected from the original set by utilizing the feature selection step.
-       -  ```Tes Set```: User can activate the option to allocate a separate test set, comprising 30% of the initial dataset, solely for the purpose of assessing the model's performance and not for training. 
-
-   -  <i>Output</i>: 
-       -  A table with scores for 11 evaluation metrics for 6 ML algorithms: SVM, KNN, AdaBoost, GaussianNB, and Dummy classifier. 
-       -  A table with selected features from the original set of features.
-       -  Visualization of model performance through different plots such as spider plot and heatmap.
-       -  Display of pipelines to see detailed steps and parameters of executed pipeline.
-       -  A zip file available for download that contains a log file and all the results.pkl files. The user can then upload the results.pkl file to the visualization tab to interpret the results.
-      
- - ### Custom ML
- 
-   -  It allows intermediate to advanced machine learning users to design a tailored machine learning pipeline as per the requirement. The user-friendly interface provides a simple toggle button to include or exclude steps/algorithms, allowing users to focus on selecting the most appropriate options for their dataset instead of programming.
+    -  Data Exploration feature allows you to upload your datasets and gain valuable insights through statistical visualizations. By analyzing data patterns, trends, and outliers, you'll be equipped to make informed decisions when developing machine learning pipelines.
+        
+    -  <i>**Step 1: Input**</i>  
+       
+       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). You can refer to the example input data for guidance. Here's an example of how your input data should look.
+       
+            | Sample   | Feature 1 | Feature 2 | Target Class |
+            |----------|-----------|-----------|--------------|
+            | Sample 1 | 2.5       | 7.8       | A            |
+            | Sample 2 | 1.3       | 6.7       | B            |
+            | Sample 3 | 4.7       | 3.2       | A            |
+  
+       
+            **Note**: When uploading your file, remember to select the correct separator using the ```Sep``` dropdown menu to avoid any errors. 
    
-   -  <i>Input</i>:  
-       -  Users can easily choose which preprocessing steps (such as scaling, data resampling, and feature selection), classifier, model evaluation method, and evaluation metric score to include in their pipeline by clicking on a toggle button.
-       -  The parameters of each individual algorithm can be customized by clicking on the ```Parameter``` button, which will provide a list of corresponding parameters that the user can adjust to their preference. If the user does not make any changes, default parameters will be used.  
-           
-       - **Note**: While preprocessing steps are optional, users are required to select at least one classifier, a model evaluation method, and a metric score.
+    -  <i>**Step 2: Output**</i>
+       
+       -  Once you've uploaded your dataset, you'll have access to various analysis options. You can explore your data in-depth using statistical summary tables and five different types of plots, including density and correlation matrix plots. Simply select the desired option from the ``Plot/Table Type`` dropdown menu.
 
-   -  <i>Output</i>:  
-       -  After selecting all the desired algorithms/steps, the user can click on the ```submit``` button to download a compressed zip file (userInputData.zip) that includes files such as README.txt, inputParameter.pkl, and scriptTemplate.py.
-       -  The user can run the designed pipeline on either their local machine or a cluster.
-   -  <i>How to run a custom-designed pipeline?</i> 
-       - Open your terminal and change your directory to previosuly downloaded folder (userInputData) from customML.
-       - Run the follwoing command to execute the pipeline.
+       -  Additionally, it provides you with the convenience of downloading the plots. Simply click on the camera button provided on each plot to save it for future reference or to share with others.
+       
+ - ### AutoML
+ 
+   - The AutoML feature aims to provide accessibility to machine learning for all users, including those without technical expertise. It automates the machine learning pipeline, which includes preprocessing, feature selection, and training and evaluating multiple classification models. Additionally, it provides a default dummy classifier for comparison.
+  
+   -  <i>**Step 1: Input**</i>  
+       
+       -  Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). You can refer to the example input data for guidance. Here's an example of how your input data should look.
+       
+            | Sample   | Feature 1 | Feature 2 | Target Class |
+            |----------|-----------|-----------|--------------|
+            | Sample 1 | 2.5       | 7.8       | A            |
+            | Sample 2 | 1.3       | 6.7       | B            |
+            | Sample 3 | 4.7       | 3.2       | A            |
+  
+       
+            **Note**: When uploading your file, remember to select the correct separator using the ```Sep``` dropdown menu to avoid any errors. 
+
+
+
+    -  <i>**Step 2: Configuration**</i>  
+     
+       The AutoML feature offers a few configuration options to customize the analysis according to your requirements:
+       
+       -  ```Variance Threshold```: The ML pipeline includes a variance threshold feature that eliminates low-variance features. You can specify the threshold value to fine-tune the feature selection process.
+       
+       -  ```No of Features to Select```: Specify the percentage of features you want to select from the original set using the feature selection step. This allows you to focus on the most relevant features.
+       
+       -  ```Tes Set```: You have the option to allocate a separate test set, comprising 30% of the initial dataset, for evaluating the model's performance. This set is exclusively used for testing and not for training the models.
+
+
+
+   -  <i>**Step 3: Output**</i> 
+   
+      Once the analysis is complete, the AutoML feature provides you with several outputs to assess and interpret the results:
+   
+       -  ```Evaluation Metrics```: You will receive a table displaying scores for 11 evaluation metrics for six ML algorithms, including SVM, KNN, AdaBoost, GaussianNB, and the dummy classifier. These metrics help you gauge the performance of each algorithm and make informed comparisons.
+       
+       -  ```Selected Features```: Another table will show the features selected from the original set. This allows you to identify the most important features that contribute to the model's performance.
+       
+       -  ```Model Performance Visualization```: The feature includes different visualization options, such as spider plots and heatmaps, to help you visualize and interpret the performance of the models. These plots provide a clear understanding of how each algorithm performs across different metrics.
+       
+       -  ```Pipeline Display```: For a more detailed view, you can explore the pipelines that were executed during the analysis. This includes information about the steps and parameters involved in each pipeline, giving you insights into the underlying processes.
+       
+       -  ```Downloadable Results```: You can download a zip file that contains a log file and all the results.pkl files. These files capture the detailed results of the analysis. You can upload the results.pkl file to the visualization tab for further analysis and interpretation.
+      
+      
+      
+      
+ - ### CustomML
+ 
+   -  The CustomML feature is designed for intermediate to advanced machine learning users who want to create a tailored machine learning pipeline to meet their specific requirements. With its user-friendly interface, users can easily design their pipeline by selecting the desired preprocessing steps, classifiers, model evaluation methods, and evaluation metric scores, all through simple toggle buttons. This allows users to focus on selecting the most suitable options for their dataset without the need for programming.
+   
+   
+   
+   -  <i>**Step 1: Designing the Pipeline**</i> 
+       
+       The CustomML feature provides following straightforward interface for designing your pipeline:
+      
+       -  ```Preprocessing Steps```: You can choose from various preprocessing steps, such as scaling, data resampling, and feature selection. Simply click on the toggle button to include or exclude each algorithm/step in your pipeline.
+       
+       -  ```Classifier```: Select at least one classifier from the available options by toggling the corresponding button.
+      
+      -  ```Model Evaluation Method```: Choose the preferred model evaluation method by clicking on the toggle button. This determines how the performance of your model will be assessed.
+       
+       -  ```Evaluation Metric Score```: Select the desired evaluation metric score for evaluating your model's performance.  
+       
+       -  ```Customizing Algorithm Parameters```: If you wish to customize the parameters of individual algorithms, click on the ```Parameter``` button. You will be presented with a list of corresponding parameters that you can adjust according to your preferences. If no changes are made, default parameters will be used.
+       
+       -  ```Pipeline Download```: Once the user has selected the desired algorithms/steps, they can obtain the designed pipeline by clicking on the ```submit``` tab. This will generate a compressed zip file (userInputData.zip) containing README.txt, inputParameter.pkl, and scriptTemplate.py.
+       
+       **Note**: While preprocessing steps are optional, you must select at least one classifier, a model evaluation method, and an evaluation metric score.
+
+
+
+   -  <i>**Step 2: Running the custom-designed pipeline**</i>
+     
+       To execute your custom-designed pipeline, follow these steps:
+       
+       - Open your terminal 
+       
+       - Change your directory to the previously downloaded folder named "userInputData" from the CustomML feature.
+       
+       - Run the following command in the terminal to execute the pipeline:
        
          ``` python scriptTemplate.py -i path/to/input.csv -p inputParameters.pkl -s tab -o .```
-       - **Input file format:** A .csv or .txt file with a row representing a sample and a column representing a feature. The first and last columns must contain the sample name and target classes, respectively, and the file must not have any NaN values. [Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt).  
-       - **Pipeline output:** After the pipeline has been executed, it will generate a compressed zip file as output, which includes a log.txt and results.pkl file. The user can then upload the results.pkl file to the ```Visualization``` tab of ---tool name-- to interpret the results.
-       - **Tags description:**
+         
+         Replace "path/to/input.csv" with the actual path to your input file.
 
-          ```usage: scriptTemplate.py [-h] [-i INPUT] [-s SEPARATOR] [-p PARAMETERS] [-o OUTPUT]```
-          <p align="center"><img src="./assets/tags-description.png" width="80%" align="middle"> </p> 
- 
+         
+        **-> Input file format:** Prepare your data in either .csv or .txt format ([Example input data](https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt)). Each row should represent a sample, and each column should represent a feature. The first column should contain the sample name, and the last column should contain the target classes. Make sure your file doesn't have any missing values (NaN). You can refer to the example input data for guidance.
+       
+       
+        **-> Tags description:**  These tags provides the usage syntax for running the scriptTemplate.py file. 
+        
+        ```usage: scriptTemplate.py [-h] [-i INPUT] [-s SEPARATOR] [-p PARAMETERS] [-o OUTPUT]```
+        <p align="center"><img src="./assets/tags-description.png" width="80%" align="middle"> </p> 
+          
+          
+          
+    -  <i>**Step 3: Pipeline Output and Result Interpretation**</i>  
+        
+        Once you have executed the pipeline, it will generate a compressed zip file as the output. This zip file will contain two important files:
+        
+        - **log.txt**: This file provides a detailed log of the pipeline execution. It includes information about each step performed during the process, any warnings or errors encountered, and other relevant details.
+
+        - **results.pkl**: This file contains the results of your pipeline, including the model outputs, predictions, and evaluation metrics. It serves as a valuable resource for further analysis and interpretation of your ML model's performance.  
+
+
+       To interpret the results obtained from your pipeline, follow these steps:  
+       
+       - Launch [Tool Name] and Navigate to the Visualization tab.
+
+       - Upload the results.pkl file that was generated from your pipeline execution.
+
+       - The [Tool Name] will process the results and provide visualizations, metrics, and insights to help you understand and analyze the performance of your ML model. You can explore various plots, charts, and summary statistics to gain deeper insights into the model's behavior and effectiveness.
+
+
 - ### Visualization
  
    -  This feature enables users to effortlessly interpret and analyze their findings with the help of several interactive tables and plots.
