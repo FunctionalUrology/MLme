@@ -1,3 +1,23 @@
+#### Table of contents
+
+- [Summary](#summary)
+- [Demo Server](#demo-server)
+- [Graphical Abstract](#graphical-abstract)
+- [Installation (via Docker)](#installation-via-docker)
+- [Installation (from source code)](#installation-from-source-code)
+    + [Prerequisite](#prerequisite)
+    + [Download sourcecode](#download-sourcecode)
+    + [Install dependencies](#install-dependencies)
+    + [Launch  ------------tool-name------------](#launch--------------tool-name------------)
+    + [Errors you may encounter](#errors-you-may-encounter)
+- [Example Input Data](#example-input-data)
+- [Tutorial](#tutorial)
+  * [Data Exploration](#data-exploration)
+    + [AutoML](#automl)
+    + [CustomML](#customml)
+    + [Visualization](#visualization)
+- [Errors you may encounter](#errors-you-may-encounter-1)
+ 
 # Summary
 <div style="text-align: right">  This github repo hosts a tool called "----tool name----". By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, "----tool name----" fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. "----tool name----" serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
 
