@@ -13,9 +13,10 @@
 - [Example Input Data](#example-input-data)
 - [Tutorial](#tutorial)
   * [Data Exploration](#data-exploration)
-    + [AutoML](#automl)
-    + [CustomML](#customml)
-    + [Visualization](#visualization)
+  * [AutoML](#automl)
+  * [CustomML](#customml)
+  * [Visualization](#visualization)
+
 - [Errors you may encounter](#errors-you-may-encounter-1)
  
 # Summary
@@ -95,7 +96,7 @@ We have set up a demo server for ----tool name---- for demonstration purposes. P
 
        -  Additionally, it provides you with the convenience of downloading the plots. Simply click on the camera button provided on each plot to save it for future reference or to share with others.
        
- - ### AutoML
+ - ## AutoML
  
    - The AutoML feature aims to provide accessibility to machine learning for all users, including those without technical expertise. It automates the machine learning pipeline, which includes preprocessing, feature selection, and training and evaluating multiple classification models. Additionally, it provides a default dummy classifier for comparison.
   
@@ -143,7 +144,7 @@ We have set up a demo server for ----tool name---- for demonstration purposes. P
       
       
       
- - ### CustomML
+ - ## CustomML
  
    -  The CustomML feature is designed for intermediate to advanced machine learning users who want to create a tailored machine learning pipeline to meet their specific requirements. With its user-friendly interface, users can easily design their pipeline by selecting the desired preprocessing steps, classifiers, model evaluation methods, and evaluation metric scores, all through simple toggle buttons. This allows users to focus on selecting the most suitable options for their dataset without the need for programming.
    
@@ -212,7 +213,7 @@ We have set up a demo server for ----tool name---- for demonstration purposes. P
        - The [Tool Name] will process the results and provide visualizations, metrics, and insights to help you understand and analyze the performance of your ML model. You can explore various plots, charts, and summary statistics to gain deeper insights into the model's behavior and effectiveness.
 
 
-- ### Visualization
+- ## Visualization
  
    -  This feature enables users to effortlessly interpret and analyze their findings with the help of several interactive tables and plots.
    
