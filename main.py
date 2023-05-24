@@ -24,8 +24,9 @@ from UI.autoML import autoML_content
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    
 navigation_bar = dbc.Navbar(
     dbc.Container(        [            
-            #dbc.Col(dbc.NavbarBrand(html.Img(src="assets/logo.svg", height="50px")),width=2),
-            dbc.Col(dbc.NavbarBrand(html.I("TOOL NAME"), style={"margin-left": "0px","font-weight": "bold","font-size": "40px","color":"white"}),width=1,align="left"),
+            dbc.Col(dbc.NavbarBrand(html.Img(src="assets/logo.png", height="50px")),width=2),
+
+            #dbc.Col(dbc.NavbarBrand(html.I("TOOL NAME"), style={"margin-left": "0px","font-weight": "bold","font-size": "40px","color":"white"}),width=1,align="left"),
             dbc.Col(width=9),
             html.A(dbc.Col(html.Img(src="https://www.unibe.ch/media/logo-unibern-footer@2x.png", height="80px"),align="right"),
                 href="https://www.unibe.ch/index_ger.html", target="_blank",
