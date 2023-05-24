@@ -1,14 +1,17 @@
+# <img src="./assets/logo-bg.png"  height=200px> 
+
 #### Table of contents
 
 - [Summary](#summary)
 - [Demo Server](#demo-server)
 - [Graphical Abstract](#graphical-abstract)
+- [Determining Suitability of MLme for Your Dataset](#determining-suitability-of-mlme-for-your-dataset)
 - [Installation (via Docker)](#installation-via-docker)
 - [Installation (from source code)](#installation-from-source-code)
     + [Prerequisite](#prerequisite)
     + [Download sourcecode](#download-sourcecode)
     + [Install dependencies](#install-dependencies)
-    + [Launch  ------------tool-name------------](#launch--------------tool-name------------)
+    + [Launch  MLme](#launch-mlme)
     + [Errors you may encounter](#errors-you-may-encounter)
 - [Example Input Data](#example-input-data)
 - [Tutorial](#tutorial)
@@ -20,47 +23,54 @@
 - [Errors you may encounter](#errors-you-may-encounter-1)
  
 # Summary
-<div style="text-align: right">  This github repo hosts a tool called "----tool name----". By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, "----tool name----" fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. "----tool name----" serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
+<div style="text-align: right">  This github repo hosts a tool called Machine Learning Made Easy (MLme). By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, MLme fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. MLme serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
 
 # Demo Server
-We have set up a demo server for ----tool name---- for demonstration purposes. Please  [-----]() to launch it. Please note that it may take a moment to load. <br><br> User can use the [example input data](#example-input-data) to test it.
+We have set up a demo server for MLme for demonstration purposes. Please  [-----]() to launch it. Please note that it may take a moment to load. <br><br> User can use the [example input data](#example-input-data) to test it.
 
 # Graphical Abstract
-<p align="center"><img src="./assets/" width="80%" align="middle"> </p> 
+<p align="center"><img src="./assets/grapAbs.png" width="80%" align="middle"> </p> 
+
+# Determining Suitability of MLme for Your Dataset
+To understand if your data and scientific question fall into the category of a classification problem, there are a few important points to consider:  
+
+  -  Categorized Data: Your data should consist of examples that are grouped into distinct classes or categories. For example, if you're studying different species of plants, each plant should be labeled with its corresponding species name, like "rose" or "tulip.  
+  
+  -  Prediction Goal: Your scientific question should involve predicting or assigning these labels to new instances based on their features. For instance, you might want to predict the species of a new plant based on its petal length, petal width, and other characteristics.
 
 # Installation (via Docker)
   1. **Prerequisite:** Before proceeding with the installation, ensure that Docker is installed and running. If you haven't installed Docker yet, you can follow the [official Docker tutorial](https://docs.docker.com/get-docker/) for installation instructions.
-  2. To obtain the ----tool name----  docker image, you may open your terminal and run the provided command.
+  2. To obtain the MLme docker image, you may open your terminal and run the provided command.
        
        ```
        docker pull                
        ```
        
-  3. To launch ----tool name---- , please run the given command in your terminal after performing the previous steps.
+  3. To launch MLme, please run the given command in your terminal after performing the previous steps.
        
        ```
        docker run -p 8080:80                      
        ```
        
-  4. Paste http://localhost:8080/ in your browser to access ----tool name----.
+  4. Paste http://localhost:8080/ in your browser to access MLme.
   
 # Installation (from source code)
 
   - ### Prerequisite 
     
-    To use ------------tool-name------------, you must have ```Python``` version ```3.9``` and ```pip``` installed
+    To use MLme, you must have ```Python``` version ```3.9``` and ```pip``` installed
     and that they are accessible from the terminal.
     
   - ### Download sourcecode 
     Download the GitHub repository and unzip it.
     
   - ### Install dependencies  
-    1. Open your terminal and change your current working directory to ------------tool-name------------ (e.g. ```cd path/to/------/```). 
+    1. Open your terminal and change your current working directory to MLme(e.g. ```cd path/to/MLme/```). 
     2. Please install the required packages using the following command: 
       
        ```pip install -r requirements.txt``` 
        
-  - ### Launch  ------------tool-name------------
+  - ### Launch MLme
       
        ```python -m main``` 
        
@@ -206,11 +216,11 @@ We have set up a demo server for ----tool name---- for demonstration purposes. P
 
        To interpret the results obtained from your pipeline, follow these steps:  
        
-       - Launch [Tool Name] and Navigate to the Visualization tab.
+       - Launch MLme and Navigate to the Visualization tab.
 
        - Upload the results.pkl file that was generated from your pipeline execution.
 
-       - The [Tool Name] will process the results and provide visualizations, metrics, and insights to help you understand and analyze the performance of your ML model. You can explore various plots, charts, and summary statistics to gain deeper insights into the model's behavior and effectiveness.
+       - The MLme will process the results and provide visualizations, metrics, and insights to help you understand and analyze the performance of your ML model. You can explore various plots, charts, and summary statistics to gain deeper insights into the model's behavior and effectiveness.
 
 
 - ## Visualization
