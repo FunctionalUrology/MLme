@@ -65,7 +65,7 @@ To understand if your data and scientific question fall into the category of a c
     Download the GitHub repository and unzip it.
     
   - ### Install dependencies  
-    1. Open your terminal and change your current working directory to MLme(e.g. ```cd path/to/MLme/```). 
+    1. Open your terminal and change your current working directory to MLme(e.g. ```cd path/to/MLme-main/```). 
     2. Please install the required packages using the following command: 
       
        ```pip install -r requirements.txt``` 
