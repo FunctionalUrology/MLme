@@ -957,7 +957,8 @@ def getResultDF(trainedModels,refitBy):
     
     failedModels_df=pd.DataFrame(failedModels,index=["Error/Warning"]).T
     
-    results_df= results_df.sort_values(refitBy)
+    if refitBy in results_df:
+        results_df= results_df.sort_values(refitBy)
 
     #if there is negative brier score metric or mcc metric, bring it to positive scale
     if "neg_brier_score" in list(results_df.columns):
@@ -965,8 +966,11 @@ def getResultDF(trainedModels,refitBy):
       
     if "matthews_corrcoef" in list(results_df.columns):
         results_df['matthews_corrcoef']=bring_To_Positive_Scale(list(results_df['matthews_corrcoef']))
-     
-    results_df=results_df.sort_values(by=refitBy, ascending=False)    
+    
+    if refitBy in results_df:
+    
+        results_df=results_df.sort_values(by=refitBy, ascending=False)    
+    
     results_df=changeColIndex(results_df)
     results_NA=changeColIndex(results_NA)
     failedModels_df=changeColIndex(failedModels_df)
