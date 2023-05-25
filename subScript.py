@@ -43,9 +43,12 @@ from imblearn.over_sampling import *
 from imblearn.under_sampling import *
 from sklearn.feature_selection import SelectPercentile,VarianceThreshold
 
+from sklearn import metrics
 
 def getTestScores(whichMetrics,y_true,yPred,k):
-    metrics={'accuracy': accuracy_score(y_true, yPred),
+    
+    if k<3:
+        metrics_={'accuracy': accuracy_score(y_true, yPred),
      'balanced_accuracy': balanced_accuracy_score(y_true, yPred),
      'average_precision': average_precision_score(y_true, yPred),
      'f1': f1_score(y_true, yPred),
@@ -58,16 +61,34 @@ def getTestScores(whichMetrics,y_true,yPred,k):
      'recall': recall_score(y_true, yPred),
      'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
      'roc_auc': roc_auc_score(y_true, yPred)}
-    
+
+    else:
+        metrics_={'accuracy': metrics.accuracy_score(y_true, yPred),
+     'balanced_accuracy': metrics.balanced_accuracy_score(y_true, yPred),
+      
+      'f1_micro': metrics.f1_score(y_true, yPred,average='micro'),
+      'f1_weighted': metrics.f1_score(y_true, yPred,average='weighted'),
+      'f1_macro': metrics.f1_score(y_true, yPred,average='macro'),
+      'matthews_corrcoef': metrics.matthews_corrcoef(y_true, yPred),
+      'jaccard': metrics.jaccard_score(y_true, yPred,average="micro"),
+      'precision': metrics.precision_score(y_true, yPred,average="micro"),
+      'recall': metrics.recall_score(y_true, yPred,average="micro")
+     }
+        
     testScores={}
 
     for metric in whichMetrics:
-        if metric in metrics.keys():
-            testScores[metric]=metrics[metric]
+        if metric in metrics_.keys():
+            testScores[metric]=metrics_[metric]
             
     return testScores
 
-
+# =============================================================================
+# ,
+#                  'recall': macro_recall_MC(y_true, yPred),
+#                  'f1_macro': macro_f1_MC(y_true, yPred),
+#                  'f1_micro': micro_f1_MC(y_true, yPred)
+# =============================================================================
 def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
     #!!!!!!!!!! Input Data
     random_state=123
@@ -87,14 +108,16 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
     
     featSel_tab_active={'SelectPercentile': SelectPercentile(percentile=percentile)}
     
-    modelEval_tab_active={'RepeatedStratifiedKFold': RepeatedStratifiedKFold(n_repeats=10, n_splits=5, random_state=None),
-     'StratifiedShuffleSplit': StratifiedShuffleSplit(n_splits=10, random_state=None, test_size=None,
+    modelEval_tab_active={'RepeatedStratifiedKFold': RepeatedStratifiedKFold(n_repeats=10, n_splits=5, random_state=123),
+     'StratifiedShuffleSplit': StratifiedShuffleSplit(n_splits=10, random_state=123, test_size=None,
                  train_size=None),
-     'NestedCV': StratifiedKFold(n_splits=5, random_state=None, shuffle=False)
+     'NestedCV': StratifiedKFold(n_splits=5,  shuffle=False)
      }
     
     modelEval_metrices=['accuracy','average_precision','f1','balanced_accuracy','f1_macro','f1_micro',
                         'f1_weighted','jaccard','precision','matthews_corrcoef','recall','roc_auc','top_k_accuracy']
+    
+    #modelEval_metrices=['accuracy']
     refit_Metric='balanced_accuracy'
     
     
@@ -182,7 +205,6 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
     #encode target variable
     y = LabelEncoder().fit_transform(y)
     
-    
     # Train-test split
     if indepTestSet!=[]:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_state,shuffle=True)
@@ -227,8 +249,9 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
         modelEval_metrices.pop("average_precision", None)
         modelEval_metrices.pop("top_k_accuracy", None)
     
+            
         if "precision" in list(modelEval_metrices.keys()):
-            modelEval_metrices["precision"]=make_scorer(precision_score,average="macro")
+            modelEval_metrices["precision"]=make_scorer(precision_score,average="micro")
         if "recall" in list(modelEval_metrices.keys()):
             modelEval_metrices["recall"]=make_scorer(recall_score,average="macro")
         if "jaccard" in list(modelEval_metrices.keys()):
@@ -299,7 +322,8 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                 
                 grid = GridSearchCV(pipe, parameters, cv=cv,#n_jobs=n_jobs,
                                     refit=refit_Metric,scoring = modelEval_metrices,return_train_score=True)
-    
+                
+                
                 if modelEval=="NestedCV":
                     nested_scores = cross_validate(grid, X, y, scoring=modelEval_metrices,cv=cv, n_jobs=n_jobs)
                     #with np.errstate(divide='ignore'):
@@ -333,7 +357,8 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                     if indepTestSet!=[]:                
                         y_pred = grid.predict(X_test)
                         testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
-    
+
+
 
                     print("Best Score for given refit metric ("+refit_Metric+") :  "+str(grid.best_score_))
                     print("\n\n\t\t")
@@ -350,11 +375,7 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                 print("\n\nPIPELINE:\n")
                 print(grid)
                 print("\n\n")
-            
-            
-        
-
-    
+  
     
     
     trainedModels["featSel_name"]=featureIndex_name
