@@ -279,19 +279,23 @@ import shutil
 def callback_on_completion(filenames):
     global results,results_NA,failedModels,trainedModels,resultBackup,selFeat_df,testScore
     testScore={}
+    selFeat_df=pd.DataFrame()
     if filenames!=None:
-            
         with open(filenames[0], 'rb') as handle:
              trainedModels=pickle.load(handle)
-            
+
         refit_Metric=trainedModels["refit_Metric"]
-        selFeat_df=getSelFeat_df(trainedModels["featSel_name"])
+        
+        
+        if "featSel_name" in trainedModels.keys():
+            selFeat_df=getSelFeat_df(trainedModels["featSel_name"])
+            del trainedModels["featSel_name"]
+            
         if "testScore" in trainedModels.keys():
             testScore=pd.DataFrame(trainedModels["testScore"]).T
             testScore=changeColIndex(testScore)
             del trainedModels["testScore"]
         
-        del trainedModels["featSel_name"]
         del trainedModels["refit_Metric"]
              
         results,results_NA,failedModels=getResultDF(trainedModels,refit_Metric)
