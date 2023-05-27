@@ -12,7 +12,7 @@
     + [Download sourcecode](#download-sourcecode)
     + [Install dependencies](#install-dependencies)
     + [Launch  MLme](#launch-mlme)
-    + [Errors you may encounter](#errors-you-may-encounter)
+  <!---  + [Errors you may encounter](#errors-you-may-encounter)--->
 - [Example Input Data](#example-input-data)
 - [Tutorial](#tutorial)
   * [Data Exploration](#data-exploration)
@@ -20,7 +20,7 @@
   * [CustomML](#customml)
   * [Visualization](#visualization)
 
-- [Errors you may encounter](#errors-you-may-encounter-1)
+<!--- - [Errors you may encounter](#errors-you-may-encounter-1)--->
  
 # Summary
 <div style="text-align: right">  This github repo hosts a tool called Machine Learning Made Easy (MLme). By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, MLme fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. MLme serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
@@ -74,7 +74,7 @@ To understand if your data and scientific question fall into the category of a c
       
        ```python -m main``` 
        
-  - ### Errors you may encounter
+ <!--- - ### Errors you may encounter --->
   
 # Example Input Data
   - For ```Data Exploration``` and ```AutoML``` : https://github.com/FunctionalUrology/MLcanvas/blob/main/example-input-data/data-tab-sep.txt
@@ -235,6 +235,6 @@ To understand if your data and scientific question fall into the category of a c
 
 
 
-# Errors you may encounter
+<!--- # Errors you may encounter
   - ``` Following exception occurred: single positional indexer is out-of-bounds```
-    - Possible solution: Ensure that you have selected the correct separator using the ```Sep``` dropdown menu.
+    - Possible solution: Ensure that you have selected the correct separator using the ```Sep``` dropdown menu. --->
