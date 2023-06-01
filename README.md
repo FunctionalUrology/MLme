@@ -43,13 +43,13 @@ To understand if your data and scientific question fall into the category of a c
   2. To obtain the MLme docker image, you may open your terminal and run the provided command.
        
        ```
-       docker pull                
+       docker pull 45474547/mlme:latest     
        ```
        
   3. To launch MLme, please run the given command in your terminal after performing the previous steps.
        
        ```
-       docker run -p 8080:80                      
+       docker run -p 8080:80 45474547/mlme                     
        ```
        
   4. Paste http://localhost:8080/ in your browser to access MLme.
