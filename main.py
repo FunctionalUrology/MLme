@@ -39,29 +39,29 @@ navigation_bar = dbc.Navbar(
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 about=dbc.Card([html.Div([
-    dbc.Row(html.H5("TOOL",style={"font-weight": "bold","color":"white"})),
-    dbc.Row(html.P("Machine learning (ML) has become an essential tool for researchers to analyze and extract valuable insights from complex datasets. However, creating an effective ML pipeline can be a daunting task, especially for researchers who lack technical proficiency or expertise in this field. Even researchers who possess technical proficiency needs to invest significant time and effort in developing an ML pipeline. To address these challenges, we have developed a tool called ----tool name----.",style={"text-align": "justify"})),
+    dbc.Row(html.H5("MLme",style={"font-weight": "bold","color":"white"})),
+    dbc.Row(html.P("Machine learning (ML) has emerged as a vital asset for researchers in analyzing and extracting valuable information from complex datasets. However, developing an effective and robust ML pipeline can present a formidable challenge, demanding considerable time and effort, thereby impeding research progress. Present tools in this landscape requires a profound understanding of ML principles and programming skills. Furthermore, users are required to engage in the comprehensive configuration of their ML pipeline to attain optimal performance.",style={"text-align": "justify"})),
     html.Br(),
-    dbc.Row(html.P("----tool name---- empowers researchers to utilize machine learning techniques in their research, regardless of their coding and technical skills. The tool provides four primary functionalities: data exploration, auto ML, custom ML, and visualization. Users can examine their datasets and obtain initial insights through an intuitive interface with the data exploration feature. With the auto-ML feature, users can leverage a pre-built ML pipeline without requiring technical expertise. The custom ML interface is intended for advanced users and provides a user-friendly platform for developing tailor-fit ML pipelines to meet their specific research needs. Finally, Users can interpret and analyze their findings effortlessly with the help of various tables and plots using the visualization feature.",style={"text-align": "justify"})),
+    dbc.Row(html.P("To address these challenges, we have developed a novel tool called Machine Learning Made Easy (MLme) that streamlines the use of ML in research, specifically focusing on classification problems at present. By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, MLme fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. To demonstrate the applicability of MLme, we conducted rigorous testing on five distinct datasets, each presenting unique characteristics and challenges. Our results consistently showed promising performance across different datasets, reaffirming the versatility and effectiveness of the tool.",style={"text-align": "justify"})),
     html.Br(),
     dbc.Row(html.H5("Availability",style={"font-weight": "bold","color":"white"})),
-    html.Div(["TOOL is developed by the ",
+    html.Div(["MLme is developed by the ",
              html.A("Functional Urology group", href="http://www.urofun.ch/", target="_blank"),
              " at the ",
              html.A("University of Bern", href="https://www.unibe.ch/index_ger.html", target="_blank"),
              ". The source code and tutorial can be found on the ",
-             html.A("TOOL GitHub repository", href="https://github.com/FunctionalUrology/", target="_blank"),
+             html.A("MLme GitHub repository.", href="https://github.com/FunctionalUrology/MLme", target="_blank"),
     ],style={"text-align": "justify"}),
     
     html.Br(),
     dbc.Row(html.H5("Contact",style={"font-weight": "bold","color":"white"})),
     html.P("Bug reports and new feature requests can be communicated via:"),
-    html.Ul([html.Li(html.Div(["GitHub : ",html.A("https://github.com/FunctionalUrology/", href="https://github.com/FunctionalUrology/", target="_blank")]),)]),
+    html.Ul([html.Li(html.Div(["GitHub : ",html.A("https://github.com/FunctionalUrology/MLme/issues", href="https://github.com/FunctionalUrology/MLme/issues", target="_blank")]),)]),
     html.Ul([html.Li("Email : akshay.akshay@unibe.ch , ali.hashemi@unibe.ch")]),
     html.Br(),
     dbc.Row(html.H5("Citation",style={"font-weight": "bold","color":"white"})),
-    html.Div(["If TOOL helps you in any way, please cite the TOOL article:"]),
-    html.Ul([html.Li(html.A("", href="", target="_blank"))]),
+    html.Div(["If MLme helps you in any way, please cite the MLme article."]),
+    #html.Ul([html.Li(html.A("", href="", target="_blank"))]),
 
     ],style={"margin-left": "50px","margin-right": "50px","margin-top": "30px","font-size": "14px"})],
     style={"margin-left": "2px","margin-right": "2px","margin-top": "5px"})
@@ -108,6 +108,9 @@ tabs_main = dbc.Card(
             card=True,
         )),
         dbc.CardBody(html.P(id="content_main", className="mt-3")),
+               html.Div(["This webpage is generated by ",
+                  html.A("MLme.", href="https://github.com/FunctionalUrology/MLme", target="_blank")],
+                 style={"margin-left": "10px","font-size": "11px"}),
     ],className="mt-3",color="grey", outline=False)
 
 
@@ -168,11 +171,6 @@ def switch_tab(at):
 
 import webbrowser as web
 web.open_new('http://127.0.0.1:8050/')
-
-# =============================================================================
-# if __name__ == '__main__':
-#     app.run_server(host='127.0.0.1',debug=True,dev_tools_hot_reload=False)
-# =============================================================================
 
 if __name__ == '__main__':
     app.run_server(host='127.0.0.1',debug=False,dev_tools_hot_reload=False)    
