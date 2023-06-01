@@ -39,9 +39,12 @@ from sklearn.feature_selection import VarianceThreshold
 
 from sklearn.model_selection import *
 from sklearn.metrics import *
+from sklearn import metrics
 
 def getTestScores(whichMetrics,y_true,yPred,k):
-    metrics={'accuracy': accuracy_score(y_true, yPred),
+
+    if k<3:
+        metrics_={'accuracy': accuracy_score(y_true, yPred),
      'balanced_accuracy': balanced_accuracy_score(y_true, yPred),
      'average_precision': average_precision_score(y_true, yPred),
      'f1': f1_score(y_true, yPred),
@@ -55,11 +58,24 @@ def getTestScores(whichMetrics,y_true,yPred,k):
      'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
      'roc_auc': roc_auc_score(y_true, yPred)}
 
+    else:
+        metrics_={'accuracy': metrics.accuracy_score(y_true, yPred),
+     'balanced_accuracy': metrics.balanced_accuracy_score(y_true, yPred),
+
+      'f1_micro': metrics.f1_score(y_true, yPred,average='micro'),
+      'f1_weighted': metrics.f1_score(y_true, yPred,average='weighted'),
+      'f1_macro': metrics.f1_score(y_true, yPred,average='macro'),
+      'matthews_corrcoef': metrics.matthews_corrcoef(y_true, yPred),
+      'jaccard': metrics.jaccard_score(y_true, yPred,average="micro"),
+      'precision': metrics.precision_score(y_true, yPred,average="micro"),
+      'recall': metrics.recall_score(y_true, yPred,average="micro")
+     }
+
     testScores={}
 
     for metric in whichMetrics:
-        if metric in metrics.keys():
-            testScores[metric]=metrics[metric]
+        if metric in metrics_.keys():
+            testScores[metric]=metrics_[metric]
 
     return testScores
 
@@ -281,15 +297,18 @@ if len(counter)>2:
     modelEval_metrices.pop("f1", None)
     modelEval_metrices.pop("average_precision", None)
     modelEval_metrices.pop("top_k_accuracy", None)
+    modelEval_metrices.pop("neg_brier_score", None)
+
 
     if "precision" in list(modelEval_metrices.keys()):
-        modelEval_metrices["precision"]=make_scorer(precision_score,average="macro")
+        modelEval_metrices["precision"]=make_scorer(precision_score,average="micro")
     if "recall" in list(modelEval_metrices.keys()):
         modelEval_metrices["recall"]=make_scorer(recall_score,average="macro")
     if "jaccard" in list(modelEval_metrices.keys()):
         modelEval_metrices["jaccard"]=make_scorer(jaccard_score,average="macro")
     if refit_Metric not in list(modelEval_metrices.keys()):
         refit_Metric=list(modelEval_metrices.keys())[0]
+
 
 print("\n\n\n\nUser Input Data: Successfull")
 print("=============================================================================")
