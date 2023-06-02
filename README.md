@@ -26,7 +26,7 @@
 <div style="text-align: right">  This github repo hosts a tool called Machine Learning Made Easy (MLme). By integrating four essential functionalities, namely data exploration, AutoML, CustomML, and visualization, MLme fulfills the diverse requirements of researchers while eliminating the need for extensive coding efforts. MLme serves as a valuable resource that empowers researchers of all technical levels to leverage ML for insightful data analysis and enhance research outcomes. By simplifying and automating various stages of the ML workflow, it enables researchers to allocate more time to their core research tasks, thereby enhancing efficiency and productivity.  </div> 
 
 # Demo Server
-We have set up a demo server for MLme for demonstration purposes. Please  [-----]() to launch it. Please note that it may take a moment to load. <br><br> User can use the [example input data](#example-input-data) to test it.
+We have set up a demo server for MLme for demonstration purposes. Please  [Click Here](https://mlme.onrender.com) to launch it. Please note that it may take a moment to load. <br><br> User can use the [example input data](#example-input-data) to test it.
 
 # Graphical Abstract
 <p align="center"><img src="./assets/grapAbs.png" width="80%" align="middle"> </p> 
