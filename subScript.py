@@ -57,7 +57,7 @@ def getTestScores(whichMetrics,y_true,yPred,k):
      'f1_macro': f1_score(y_true, yPred,average='macro'),
      'matthews_corrcoef': matthews_corrcoef(y_true, yPred),
      'jaccard': jaccard_score(y_true, yPred),
-     'precision': precision_score(y_true, yPred),
+     #'precision': precision_score(y_true, yPred),
      'recall': recall_score(y_true, yPred),
      'top_k_accuracy': top_k_accuracy_score(y_true, yPred,k=k),
      'roc_auc': roc_auc_score(y_true, yPred)}
@@ -74,7 +74,7 @@ def getTestScores(whichMetrics,y_true,yPred,k):
       'precision': metrics.precision_score(y_true, yPred,average="micro"),
       'recall': metrics.recall_score(y_true, yPred,average="micro")
      }
-        
+
     testScores={}
 
     for metric in whichMetrics:
@@ -114,10 +114,13 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
      'NestedCV': StratifiedKFold(n_splits=5,  shuffle=False)
      }
     
-    modelEval_metrices=['accuracy','average_precision','f1','balanced_accuracy','f1_macro','f1_micro',
-                        'f1_weighted','jaccard','precision','matthews_corrcoef','recall','roc_auc','top_k_accuracy']
+    #modelEval_metrices=['accuracy','average_precision','f1','balanced_accuracy','f1_macro','f1_micro',
+     #                   'f1_weighted','jaccard','precision','matthews_corrcoef','recall','roc_auc','top_k_accuracy']
     
-    #modelEval_metrices=['accuracy']
+    modelEval_metrices=['accuracy','average_precision','f1','balanced_accuracy','f1_macro','f1_micro',
+                        'f1_weighted','jaccard','matthews_corrcoef','recall','roc_auc','top_k_accuracy']
+    
+    
     refit_Metric='balanced_accuracy'
     
     
@@ -337,7 +340,7 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                     #test score
                     if indepTestSet!=[]:                
                         y_pred = grid.predict(X_test)
-                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
+                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter))
     
 
 
@@ -356,7 +359,7 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                     #test score
                     if indepTestSet!=[]:                
                         y_pred = grid.predict(X_test)
-                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter)-1)
+                        testScore[modelName+"_"+modelEval]=getTestScores(modelEval_metrices.keys(),y_test,y_pred,len(counter))
 
 
 
@@ -375,9 +378,8 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                 print("\n\nPIPELINE:\n")
                 print(grid)
                 print("\n\n")
-  
-    
-    
+
+
     trainedModels["featSel_name"]=featureIndex_name
     #test score
     if indepTestSet!=[]:  
