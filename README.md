@@ -233,6 +233,12 @@ To understand if your data and scientific question fall into the category of a c
    -  <i>Output</i>: 
        -  A range of tables and plots are available for comparative analysis of model performance. Users can customize and download all of the plots in high quality, making them suitable for publication.
 
+## Citations information
+Please cite **MLme** article preprinted in [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.07.04.546825v1).
+
+Machine Learning Made Easy (MLme): A Comprehensive Toolkit for Machine Learning-Driven Data Analysis. <I> Akshay Akshay</i><sup>#</sup><I>, Mitali Katoch</i><sup>#</sup><I>, Navid Shekarchizadeh, Masoud Abedi, Ankush Sharma, Fiona C. Burkhard, Rosalyn M. Adam, Katia Monastyrskaia, Ali Hashemi Gheinani</i>. bioRxiv 2023.07.04.546825; doi: https://doi.org/10.1101/2023.07.04.546825
+
+<h6><sup>#</sup>  Contributed equally.<h1>
 
 
 <!--- # Errors you may encounter
