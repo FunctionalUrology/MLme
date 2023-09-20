@@ -89,7 +89,7 @@ def getTestScores(whichMetrics,y_true,yPred,k):
 #                  'f1_macro': macro_f1_MC(y_true, yPred),
 #                  'f1_micro': micro_f1_MC(y_true, yPred)
 # =============================================================================
-def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
+def runSubscript(data,date,varTH_automl,percentile,indepTestSet,resampling):
     #!!!!!!!!!! Input Data
     random_state=123
     #set random seed for numpy
@@ -283,9 +283,14 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
     
         #get scaling and sampling info
         scalers=list(scaling_tab_active.values())
-        samplers=list(overSamp_tab_active.values())+list(underSamp_tab_active.values())
         featSel=list(featSel_tab_active.values())
-    
+        
+        
+        
+        #check for resampling information
+        samplers=[]
+        if resampling!=[]:
+          samplers=list(overSamp_tab_active.values())+list(underSamp_tab_active.values())  
     
         #if it is dummy, do not perform any preprocessing
         if(modelName=="Dummy Classifier"):
@@ -314,7 +319,7 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
         
         #get CV method
         for modelEval in modelEval_tab_active:
-    
+
             cv=modelEval_tab_active[modelEval]
     
             #handle unexpected error
@@ -378,6 +383,7 @@ def runSubscript(data,date,varTH_automl,percentile,indepTestSet):
                 print("\n\nPIPELINE:\n")
                 print(grid)
                 print("\n\n")
+                
 
 
     trainedModels["featSel_name"]=featureIndex_name
