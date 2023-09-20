@@ -77,21 +77,43 @@ runButton=dbc.Card([dbc.CardBody([
                             html.Div(dbc.Label("Number of Features to Select (%)",style={"margin-top": "10px","font-weight": "bold","font-size": "16px"})),    
                             dbc.Input(type="number",placeholder="in percentage",value=1, id="percentile",min=1,max=100,persistence=True,persistence_type="memory"),
                             
-                            dbc.Checklist(options=[{"label": "Test Set","value": "indepTestSet1"}],
+                            dbc.Row([dbc.Checklist(options=[{"label": "Test Set","value": "indepTestSet1"}],
                                value=[],
                                id="keepTest",
                                inline=True,switch=True,labelStyle={"font-weight": "bold",
                                                                    "font-size": "18px"},
                                labelCheckedStyle={"color": "green"},persistence=True,persistence_type="memory",
-                               style={"margin-top": "10px"}),
-                            html.Div(dbc.Label("It is recommended to keep an independent test set solely for the purpose of testing the model and not for any kind of training.",style={"margin-top": "2px","font-size": "12px",})),
+                               style={"margin-top": "12px"}),
+                            
+                            dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="indepTestSet1-info-btn",n_clicks=0,style={"margin-left": "30px","margin-top": "15px"}),
+                            dbc.Alert("It is recommended to keep an independent test set solely for the purpose of testing the model and not for any kind of training.",
+                              id="indepTestSet1-info-text",dismissable=True,color="info",is_open=False,)],style={"margin-top": "14px"}),
+                            
+                            
 
+                            dbc.Row([dbc.Checklist(options=[{"label": "Resampling","value": "resampling"}],
+                               value=[],
+                               id="resampling",
+                               inline=True,switch=True,labelStyle={"font-weight": "bold",
+                                                                   "font-size": "18px"},
+                               labelCheckedStyle={"color": "green"},persistence=True,persistence_type="memory",
+                               style={"margin-top": "10px"}),
+                            
+                            dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="resampling-info-btn",n_clicks=0,style={"margin-top": "15px"}),
+                            dbc.Alert("In machine learning, data resampling involves adjusting the dataset by oversampling the minority class (adding more instances) or undersampling the majority class (removing some instances) to address class imbalance. Toggle it on if you have an imbalanced dataset; we'll apply both oversampling and undersampling methods.",
+                              id="resampling-info-text",dismissable=True,color="info",is_open=False,)],style={"margin-top": "14px"}),
+                            
         
                             html.Div(dbc.Button(html.I("      Run", className="fa fa-solid fa-play-circle-o"),
                             disabled=False,color="primary",id='run_autoML', className="me-1", 
-                            style={"margin-top": "15px","font-weight": "bold","font-size": "18px"}))
+                            style={"margin-top": "20px","margin-left": "100px","font-weight": "bold","font-size": "18px"}))
 
             ])],className="mt-3",color="dark", outline=True)
+
+genrateInfoCallback("resampling")
+genrateCollapseCallback("resampling") 
+genrateInfoCallback("indepTestSet1")
+genrateCollapseCallback("indepTestSet1") 
         
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 # =============================================================================
@@ -336,11 +358,12 @@ import shutil
     Input(component_id='autoML_sep', component_property='value'),
     Input('varTH_automl', 'value'),
     Input('percentile', 'value'),
-    Input('keepTest', 'value')]
+    Input('keepTest', 'value'),
+    Input('resampling', 'value')]
        
 )
 
-def runAutoML(n_clicks,sep,varTH_automl,percentile,keepTest): 
+def runAutoML(n_clicks,sep,varTH_automl,percentile,keepTest,resampling): 
     if n_clicks is not None:
         try:
             #read file  
@@ -367,7 +390,7 @@ def runAutoML(n_clicks,sep,varTH_automl,percentile,keepTest):
                         shutil.rmtree(os.path.join("./autoML_output/", f))
                         
                 date = datetime.now().strftime("%I_%M_%S_%p-%d_%m_%Y")
-                runSubscript(inputData,date,varTH_automl,percentile,keepTest)
+                runSubscript(inputData,date,varTH_automl,percentile,keepTest,resampling)
                 
                 #read data
                 logFolder = os.path.join(os.getcwd(),"autoML_output/"+date)
