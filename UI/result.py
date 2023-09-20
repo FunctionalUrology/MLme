@@ -12,6 +12,8 @@ from dash.dependencies import Input, Output,State
 import dash_uploader as du
 import pickle,dash
 from helperFunctions import *
+from UI.scaling import genrateInfoCallback, genrateCollapseCallback
+
 du.configure_upload(app, 'uploads')
 
 
@@ -31,10 +33,18 @@ uploadResult=dbc.Card([dbc.CardBody([
                         max_file_size=10240,
                         default_style={'lineHeight': '1','minHeight': '1',},
                         upload_id=None,
-                        max_files=1,)
+                        max_files=1,),
+                    
+                    dbc.Button(html.I( className="fa fa-info-circle fa-lg"),id="vis-info-btn",n_clicks=0,style={"margin-top": "15px"}),
+                    dbc.Alert("Users should upload a 'results.pkl' file from AutoML or CustomML tab.",
+                      id="vis-info-text",dismissable=True,color="info",is_open=False,)
+            
+                    
                     ])],className="mt-3",color="dark", outline=True) 
 
- 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
+genrateInfoCallback("vis")
+genrateCollapseCallback("vis")    
  
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 exampleResults=dbc.Card([dbc.CardBody([
